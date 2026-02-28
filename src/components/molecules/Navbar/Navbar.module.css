@@ -1,0 +1,7 @@
+.bar{
+    border: solid black;
+    border-width: 4px;
+    gap: 5rem;
+    display: flex;
+    justify-content: space-evenly;
+}
