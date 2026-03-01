@@ -1,0 +1,16 @@
+.body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navbar {
+    margin-top: 30px;
+}
+
+.logo {
+    position: fixed;
+    left: 10px;
+    top: 20px;
+}
