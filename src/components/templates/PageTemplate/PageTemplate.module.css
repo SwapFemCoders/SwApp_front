@@ -2,7 +2,10 @@
     margin: 0;
     display: flex;
     justify-content: center;
-
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #3fb4c5;
 }
 
 .navbar {
@@ -13,4 +16,10 @@
     position: fixed;
     left: 10px;
     top: 20px;
+}
+
+.mascot {
+    display: flex;
+    position: absolute;
+    top: 30%;
 }
