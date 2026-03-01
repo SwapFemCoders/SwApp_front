@@ -12,9 +12,6 @@ const Page = () => (
             <div className={style.navbar}>
                 <Navbar/>
             </div>
-            <div className={style.mascot}>
-                <Mascot/>
-            </div>
         </div>
     </>
 );
