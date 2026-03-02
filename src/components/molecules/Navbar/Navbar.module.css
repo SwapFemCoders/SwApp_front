@@ -4,4 +4,6 @@
     gap: 5rem;
     display: flex;
     justify-content: space-evenly;
+    justify-self: center;
+    background-color: white;
 }
