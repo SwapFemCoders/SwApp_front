@@ -1,0 +1,47 @@
+
+.cardContainer {
+  position: relative; 
+  width: 220px;
+  margin-bottom: 25px; 
+}
+
+.cardBody {
+  background-color: #fce300;
+  border: 2px solid #000;
+  padding: 20px 15px 40px 15px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 280px;
+}
+
+.title {
+  font-family: 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  font-style: italic;
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.imageWrapper {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform: rotate(-5deg); 
+}
+
+.buttonPositioner {
+  position: absolute;
+  bottom: -22px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
