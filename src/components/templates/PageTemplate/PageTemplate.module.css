@@ -1,0 +1,20 @@
+.body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: fixed; 
+    inset: 0;
+    background-color: #3fb4c5;
+    z-index: -1;     
+    
+}
+
+.navbar {
+    margin-top: 30px;
+}
+
+.logo {
+    position: fixed;
+    left: 10px;
+    top: 20px;
+}
