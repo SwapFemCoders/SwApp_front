@@ -1,12 +1,9 @@
 import styles from './NavbarButton.module.css';
 
-const NavbarButton = ({name}) => (
+const NavbarButton = ({name, url}) => (
         <>
             <div className={styles.button}>
-                <p className={styles.text}>{name}
-                </p>
-                <a href="">
-
+                <a href={url} className={styles.text}> {name}
                 </a>
             </div>
         </>
