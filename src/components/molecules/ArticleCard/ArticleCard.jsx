@@ -1,4 +1,5 @@
 
+import FavoriteButton from '../../atoms/favoriteButton/FavoriteButton';
 import styles from './article-card.module.css';
 
 const ArticleCard = ({ title, imageSrc, onAction }) => {

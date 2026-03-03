@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import ArticleCard from "../../molecules/articleCard/ArticleCard";
 import styles from './article-list.module.css';
 import ArticlesPath from "../../../services/ArticlesPath";
+import MockArticles from "../../../assets/Mocks/MockArticles";
+import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 
 const ArticleList = () =>{
     const [list, setList] = useState([]);
     const[selectedArticle, setSelectedArticle] = useState(null); 
 
     useEffect(()=>{
-    ArticlesPath().getAllArticles().then(data =>{setList(data)});
+    setList(MockArticles);
+        // ArticlesPath().getAllArticles().then(data =>{setList(data)});
     }, []);
 
     const handleOpenDetails = async(id) => {
