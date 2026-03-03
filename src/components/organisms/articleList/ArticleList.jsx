@@ -3,6 +3,7 @@ import styles from './article-list.module.css';
 import ArticlesPath from "../../../services/ArticlesPath";
 import MockArticles from "../../../assets/Mocks/MockArticles";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
+import ArticleDetails from "../../molecules/articleDetails/ArticleDetails";
 
 const ArticleList = () =>{
     const [list, setList] = useState([]);
@@ -15,7 +16,8 @@ const ArticleList = () =>{
 
     const handleOpenDetails = async(id) => {
     try{
-        const details = await ArticlesPath().getArticleById(id);
+       const details = MockArticles.find(article => article.id === id);
+        // const details = await ArticlesPath().getArticleById(id);
         setSelectedArticle(details);
     } catch (error){
         console.error("error charging details", error);
