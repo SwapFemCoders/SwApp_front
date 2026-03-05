@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import redHeart from '../../../assets/images/red-heart.png';
-import whiteHeart from '../../../assets/images/white-heart.jpg';
+import whiteHeart from '../../../assets/images/white-heart.png';
 import styles from './favorite-button.module.css';
+import { useAuth } from '../../../context/AuthContext';
 
-const FavoriteButton = ({ articleId, isLogged, onShowLogin }) => {
+const FavoriteButton = ({ articleId }) => {
     const [isFavorite, setIsFavorite] = useState(false);
+
+   // const { isLogged } = useAuth(); 
+    const { isLogged,openAuthModal } = useAuth();
 
     const handleFavClick = (e) => {
         e.stopPropagation(); 
 
-        if (!isLogged) {
-            return onShowLogin();
+         if (!isLogged) {
+           return openAuthModal();
         }
         try{
             setIsFavorite(!isFavorite);
+            //llamada a la API para guardar favorito
             console.log("Saving...");
         }catch (error){
             console.error("error in saved", error);

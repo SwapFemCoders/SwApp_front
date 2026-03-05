@@ -1,13 +1,19 @@
+
+import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import Title from '../../atoms/title/Title';
+import AuthModal from '../../molecules/authModal/AuthModal';
 import { RedBackground } from '../../atoms/RedBackground.jsx/RedBackground';
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 
-const Shop = () => {
+const ShopContent = () => {
+    const { isModalOpen, closeAuthModal } = useAuth();
     return (
         <main className={styles.shopContainer}>
             <div className={styles.comicDivider}></div>
             {/* 2. Título de la página */}
             <header className={styles.header}>
+                <Title text= "SHOP"/>
                 <h1>SHOP</h1>
             </header>
 
@@ -30,8 +36,15 @@ const Shop = () => {
             <footer className={styles.footer}>
                 <div className={styles.placeholder}>FOOTER</div>
             </footer>
+            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </main>
     );
 };
 
-export default Shop;
+ export default function Shop() {
+    return (
+        <AuthProvider >
+            <ShopContent />
+        </AuthProvider>
+    );
+}
