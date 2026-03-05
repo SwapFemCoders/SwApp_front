@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import ActionButton from '../../atoms/actionButton/ActionButton';
 import styles from './auth-modal.module.css';
+import CloseButton from '../../atoms/closeButton/CloseButton';
 
 const AuthModal = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const AuthModal = ({ isOpen, onClose }) => {
     return (
         <div className={styles.overlay} onClick={onClose}>
             <div className={styles.modal} onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className={styles.closeX}>X</button>
+                <CloseButton onClick = {onClose} />
                 <h3>Do you want to see more?</h3>
                 <p>Login or registrer for more details!</p>
                 <div className={styles.buttons}>
