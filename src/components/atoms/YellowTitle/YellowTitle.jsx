@@ -1,7 +1,10 @@
 import React from 'react'
+import style from "./YellowTitle.module.css"
 
 export const YellowTitle = () => {
     return (
-    <div>YellowTitle</div>
+    <div className={style.box}>
+        
+    </div>
     )
 }

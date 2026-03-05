@@ -1,13 +1,10 @@
 .pageTemplate {
     position: fixed;
     inset: 0;
-
-    overflow: hidden;
-    
 }
 
 .outlet {
     position: relative;
-    top: 10rem;
+    top: 20rem;
     z-index: 2;
 }

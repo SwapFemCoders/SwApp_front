@@ -3,8 +3,10 @@
     height: 100%;
 }
 
-.elements{
-    z-index: 1;
+.header{
+    z-index: 10;
+    position: sticky;
+
 }
 
 .repeatingSection {

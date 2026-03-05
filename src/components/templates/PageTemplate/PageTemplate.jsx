@@ -13,7 +13,7 @@ const PageTemplate = () => (
                 <RepeatingSection/>
             </div>
 
-            <div className={style.elements}>
+            <div className={style.header}>
                 <Header/>
             </div>
         </section>

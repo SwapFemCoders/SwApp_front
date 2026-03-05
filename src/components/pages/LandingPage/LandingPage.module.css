@@ -5,14 +5,12 @@
 
 .section1 {
     position: relative;
-    overflow: hidden;
     min-height: 100vh;
 }
 
 .mascot {
     display: flex;
     position:relative;
-    top: 30%;
     left:35%;
     height: 100vh;
     z-index: 1;
