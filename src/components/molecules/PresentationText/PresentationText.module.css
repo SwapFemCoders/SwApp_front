@@ -1,0 +1,13 @@
+.title{
+    font-family:'Inter', sans-serif;
+    color: white;
+    font-size: 5rem;
+    margin: 5rem;
+}
+
+.text {
+    font-family:'Inter', sans-serif;
+    color: white;
+    font-size: 2rem;
+    margin: 5rem;
+}

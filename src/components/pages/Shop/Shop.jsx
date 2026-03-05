@@ -2,6 +2,7 @@
 import { AuthProvider, useAuth } from '../../../context/AuthContext';
 import Title from '../../atoms/title/Title';
 import AuthModal from '../../molecules/authModal/AuthModal';
+import { RedBackground } from '../../atoms/RedBackground.jsx/RedBackground';
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 

@@ -1,14 +1,12 @@
 .body {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     background-color: #3fb4c5;
     display: flex;
-    position: absolute;
     justify-content: center;
     margin: 0;
     padding: 0;
     inset: 0;
-    overflow: hidden;
 }
 
 .word {
