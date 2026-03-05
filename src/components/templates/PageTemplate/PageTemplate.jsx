@@ -9,12 +9,11 @@ import style from "./PageTemplate.module.css";
 const PageTemplate = () => (
     <>
         <section className={style.body}>
-            <div className={style.repeatingSection}>
-                <RepeatingSection/>
-            </div>
-
             <div className={style.header}>
                 <Header/>
+            </div>
+            <div className={style.repeatingSection}>
+                <RepeatingSection/>
             </div>
         </section>
     </>
