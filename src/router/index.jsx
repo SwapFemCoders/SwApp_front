@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import LandingPage from "../components/pages/LandingPage/LandingPage";
 import Shop from "../components/pages/Shop/Shop";
+import RepeatingSection from "../components/templates/RepeatingSection/RepeatingSection";
 import { Layout } from "../layout/Layout";
 
 export const router = createBrowserRouter ([
@@ -14,7 +15,7 @@ export const router = createBrowserRouter ([
             },
             {
                 path: "/Shop",
-                Component: Shop
+                Component: RepeatingSection
             }
         ]
     },
