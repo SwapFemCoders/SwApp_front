@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import redHeart from '../../../assets/images/red-heart.png';
-import whiteHeart from '../../../assets/images/white-heart.jpg';
+import whiteHeart from '../../../assets/images/white-heart.png';
 import styles from './favorite-button.module.css';
 import { useAuth } from '../../../context/AuthContext';
 
