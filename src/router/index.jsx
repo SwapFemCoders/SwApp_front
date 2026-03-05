@@ -15,7 +15,7 @@ export const router = createBrowserRouter ([
             },
             {
                 path: "/Shop",
-                Component: RepeatingSection
+                Component: Shop
             }
         ]
     },

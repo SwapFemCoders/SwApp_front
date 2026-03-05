@@ -5,24 +5,16 @@ import RepeatingSection from "../../templates/RepeatingSection/RepeatingSection"
 import { SecondSectionLanding } from "../../organisms/SecondSectionLanding/SecondSectionLanding";
 
 const LandingPage = () => (
-    <>
-        <div className={style.repeatingSection}>
-            <RepeatingSection/>
-        </div>
-        
+    <div className={style.page}>
         <section className={style.section1}>
-                <div className={style.pageTemplate}>
-                    <PageTemplate/>
-                </div>
                 <div className={style.mascot}>
                     <Mascot/>
                 </div>
         </section>
-        
         <section className={style.section2}>
             <SecondSectionLanding/>
         </section>
-    </>
+    </div>
 );
 
 export default LandingPage;
