@@ -1,7 +1,11 @@
+
+import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import AuthModal from '../../molecules/authModal/AuthModal';
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 
-const Shop = () => {
+const ShopContent = () => {
+    const { isModalOpen, closeAuthModal } = useAuth();
     return (
         <main className={styles.shopContainer}>
             <div className={styles.comicDivider}></div>
@@ -29,8 +33,15 @@ const Shop = () => {
             <footer className={styles.footer}>
                 <div className={styles.placeholder}>FOOTER</div>
             </footer>
+            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </main>
     );
 };
 
-export default Shop;
+ export default function Shop() {
+    return (
+        <AuthProvider >
+            <ShopContent />
+        </AuthProvider>
+    );
+}

@@ -1,16 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-    const [isLogged, settIsLogged] = useState(false); //aqui hay que confirmar login
+    const [isLogged, setIsLogged] = useState(false); //aqui hay que confirmar login
     const[isModalOpen, setIsModalOpen] = useState (false);
 
-    const openLoginModal =() => setIsModalOpen(true);
-    const closeLoginModal = () => setIsModalOpen(false);
+    const openAuthModal =() => setIsModalOpen(true);
+    const closeAuthModal = () => setIsModalOpen(false);
 
     return (
-        <AuthContext.Provider value={{ isLogged, isModalOpen, openLoginModal, closeLoginModal }}>
+        <AuthContext.Provider value={{ isLogged, isModalOpen, openAuthModal, closeAuthModal }}>
             {children}
         </AuthContext.Provider>
     );
