@@ -44,7 +44,7 @@
     gap: 15px;
 }
 
-/* Botón de Log In (Amarillo) */
+/* Botón de Log In (Amarillo)
 .btnLog {
     background: #f7d51d;
     color: #000;
@@ -54,7 +54,7 @@
     cursor: pointer;
     box-shadow: 4px 4px 0px #000;
     transition: all 0.1s;
-}
+} */
 
 /* Botón de Register (Blanco) */
 .btnReg {
@@ -68,12 +68,12 @@
     transition: all 0.1s;
 }
 
-.btnLog:hover, .btnReg:hover {
+ .btnReg:hover {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px #000;
 }
 
-.btnLog:active, .btnReg:active {
+.btnReg:active {
     transform: translate(4px, 4px);
     box-shadow: 0px 0px 0px #000;
 }
