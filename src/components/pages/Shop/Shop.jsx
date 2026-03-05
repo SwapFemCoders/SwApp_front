@@ -1,3 +1,4 @@
+import { RedBackground } from '../../atoms/RedBackground.jsx/RedBackground';
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 
