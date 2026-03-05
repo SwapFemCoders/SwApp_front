@@ -30,4 +30,5 @@
 
 .section2{
     min-height: 100vh;
+    z-index: 10;
 }

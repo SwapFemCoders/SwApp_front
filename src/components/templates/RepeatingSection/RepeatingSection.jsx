@@ -1,9 +1,9 @@
 import FlyingSwapp from "../../atoms/FlyingSwapp/FlyingSwapp";
 import style from "./RepeatingSection.module.css";
 
-const RepeatingSection = ({ count = 400 }) => {
+const RepeatingSection = ({ count = 600 }) => {
 const getRandomStyle = () => ({
-    width: `${Math.floor(Math.random() * 1200) + 80}px`,
+    width: `${Math.floor(Math.random() * 800) + 40}px`,
     margin: `${Math.random() * 50 +10}px`,
     top: `${Math.random() * 100}%`,
     left: `${Math.random() * 100}%`,
