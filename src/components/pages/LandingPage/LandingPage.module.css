@@ -1,7 +1,33 @@
+.section1 {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
 
 .mascot {
     display: flex;
-    position: absolute;
+    position:relative;
     top: 30%;
     left:35%;
+    height: 100vh;
+    z-index: 10;
+    align-items: center; 
+}
+
+.pageTemplate{
+    top: 0;
+    position:relative;
+    z-index: 10;
+}
+
+.repeatingSection {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    
+}
+
+.section2{
+    min-height: 100vh;
 }

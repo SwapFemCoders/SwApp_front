@@ -1,9 +1,10 @@
 import style from "./FlyingSwapp.module.css";
 
-const FlyingSwapp = () => (
+const FlyingSwapp = ({randomstyle}) => (
     <>
-        <div>
-            <p className={style.swapp}>SWAPP</p>
+        <div style={randomstyle}>
+            <img src="../src/assets/images/FlyingSwapp.png" alt="SWAPP word" className={style.swapp}>
+            </img>
         </div>
     </>
 )
