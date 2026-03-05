@@ -1,5 +1,6 @@
 
 import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import Title from '../../atoms/title/Title';
 import AuthModal from '../../molecules/authModal/AuthModal';
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
@@ -11,6 +12,7 @@ const ShopContent = () => {
             <div className={styles.comicDivider}></div>
             {/* 2. Título de la página */}
             <header className={styles.header}>
+                <Title text= "SHOP"/>
                 <h1>SHOP</h1>
             </header>
 
