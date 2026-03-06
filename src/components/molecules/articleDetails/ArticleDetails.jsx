@@ -11,8 +11,10 @@ const ArticleDetails = ({ article, onClose }) => {
         if (!isLogged) {
            return openAuthModal();
         }
-        //tema reserva con bbdd y algo q diga ok! reservado etc
+
     }
+        //tema reserva con bbdd y algo q diga ok! reservado etc
+    const fullImageSrc = `data:image/png;base64,${article.picture}`;
     return (
         <div className={styles.modal_overlay} onClick={onClose}>
             <div className={styles.modal_content} onClick={e => e.stopPropagation()}>
@@ -25,14 +27,14 @@ const ArticleDetails = ({ article, onClose }) => {
 
                 <div className={styles.modal_body}>
                     <div className={styles.image_container}>
-                        <img src={article.picture} alt={article.title} />
+                        <img src={fullImageSrc} alt={article.title} />
                     </div>
                     
                     <div className={styles.details}>
                         <p><strong>Description:</strong> {article.description}</p>
                         <p><strong>Creation date:</strong> {article.date}</p>
                         <p><strong>State:</strong> {article.state}</p>
-                        <p><strong>Listed by:</strong> @{article.user}</p>
+                        <p><strong>Listed by:</strong> @{article.creator}</p>
                     </div>
                 </div>
 

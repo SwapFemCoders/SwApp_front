@@ -10,14 +10,14 @@ const ArticleList = () =>{
     const[selectedArticle, setSelectedArticle] = useState(null); 
 
     useEffect(()=>{
-    setList(MockArticles);
-        // ArticlesPath().getAllArticles().then(data =>{setList(data)});
+    //setList(MockArticles);
+        ArticlesPath().getAllArticles().then(data =>{setList(data)});
     }, []);
 
     const handleOpenDetails = async(id) => {
     try{
-       const details = MockArticles.find(article => article.id === id);
-        // const details = await ArticlesPath().getArticleById(id);
+      // const details = MockArticles.find(article => article.id === id);
+        const details = await ArticlesPath().getArticleById(id);
         setSelectedArticle(details);
     } catch (error){
         console.error("error charging details", error);

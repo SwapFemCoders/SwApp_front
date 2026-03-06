@@ -12,10 +12,7 @@ const ShopContent = () => {
         <main className={styles.shopContainer}>
             <div className={styles.comicDivider}></div>
             {/* 2. Título de la página */}
-            <header className={styles.header}>
-                <Title text= "SHOP"/>
-                <h1>SHOP</h1>
-            </header>
+            <Title text= "SHOP"/>
 
             {/* 3. Lateral Izquierdo */}
             <aside className={`${styles.sidebar} ${styles.left}`}>

@@ -21,7 +21,6 @@
     border: 4px solid #000; /* Borde grueso estilo cómic */
     box-shadow: 12px 12px 0px #000; /* Sombra sólida, marca de la casa */
     text-align: center;
-    transform: rotate(-1deg); /* Un toque "gamberro" e irregular */
 }
 
 .modal h3 {
