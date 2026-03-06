@@ -13,8 +13,18 @@ const ArticlesPath =() =>{
         }
     }
 
+    const getArticleById = async(id) =>{
+        try{
+            const response = await axios.get(`${url}/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error ("Error to obtains article details", error);
+            throw error;
+        }
+    }
 
-return{ getAllArticles}
+
+return{ getAllArticles, getArticleById}
 
 }
 export default ArticlesPath;
