@@ -1,0 +1,15 @@
+.item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#ffd400;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.item:hover{
+  background:#ffea70;
+}
