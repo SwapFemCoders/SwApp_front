@@ -1,5 +1,5 @@
 .background {
-    background-color: #c8403c; 
+    background-color: var(--frame-color, #c8403c); 
     height: fit-content;
     margin: 10rem;
     border: solid black 7px;

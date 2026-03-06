@@ -2,6 +2,8 @@ import React from 'react'
 
 export const LogIn = () => {
     return (
-    <div>LogIn</div>
+        <div>
+            <RedBackground color="#b55494" content="LOG IN FORM"/>
+        </div>
     )
 }
