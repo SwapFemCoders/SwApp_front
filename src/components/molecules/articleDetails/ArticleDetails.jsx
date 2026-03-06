@@ -11,6 +11,7 @@ const ArticleDetails = ({ article, onClose }) => {
         if (!isLogged) {
            return openAuthModal();
         }
+
     }
         //tema reserva con bbdd y algo q diga ok! reservado etc
     const fullImageSrc = `data:image/png;base64,${article.picture}`;
