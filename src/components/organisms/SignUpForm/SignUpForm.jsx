@@ -99,11 +99,15 @@ export const SignUpForm = () => {
                     <label htmlFor="name" className={style.label}>Location</label>
                     <input className={style.input} type="text" name='location' id="location" autoComplete='off' onChange={handleChange} required/>
                 </div>
-                <div>
-                    <label htmlFor="picture" className={style.label}>Picture</label>
-                    <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} autoComplete='off'/>
-                    <label htmlFor="picture" className={style.pictureButton}>UPLOAD</label>
-                    <span className={style.file}>{fileName}</span>
+                <div className={style.picture}>
+                    <div>
+                        <label htmlFor="picture" className={style.label}>Picture</label>
+                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} autoComplete='off'/>
+                    </div>
+                    <div className={style.uploadButton}>
+                        <label htmlFor="picture" className={style.pictureButton}>UPLOAD</label>
+                        <span className={style.file}>{fileName}</span>
+                    </div>
                 </div>
 
                 <section className={style.buttonSection}>
