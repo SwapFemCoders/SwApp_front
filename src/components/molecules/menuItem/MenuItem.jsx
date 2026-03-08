@@ -1,12 +1,12 @@
 import styles from "./menu-item.module.css";
 
-const MenuItem = ({icon,label,onClick})=>{
+const MenuItem = ({icon,label,onClick, className})=>{
   return(
     <>
-      <div className={styles.item} onClick={onClick}>
-        <span className={styles.icon}>{icon}</span>
-        <span>{label}</span>
-      </div>
+      <button className={`${className} ${styles.btnMenu}`} onClick={onClick}>
+        <figure>{icon}</figure>
+        <span className={styles.label}>{label}</span>
+      </button>
     </>
   )
 }

@@ -1,11 +1,13 @@
 import styles from "./avatar-user.module.css";
+import avatar from "../../../assets/images/avatar.png";
 
-const AvatarUser=({src})=>{
+
+const AvatarUser=()=>{
 
  return(
   <img 
     className={styles.avatar}
-    src={src}
+    src={avatar}
     alt="user avatar"
   />
  )
