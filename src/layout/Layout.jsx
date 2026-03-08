@@ -4,9 +4,9 @@ import PageTemplate from '../components/templates/PageTemplate/PageTemplate';
 
 export const Layout = () => (
     <>
-        <div className={style.pageTemplate}>
+        <header className={style.pageTemplate}>
                 <PageTemplate/>
-        </div>
+        </header>
         <section className={style.outlet}>
                 <Outlet/>
         </section>
