@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TitleBox from "../../atoms/titleBox/TitleBox"
 import style from "./SignUpForm.module.css"
 import UserPath from '../../../services/UserPath';
+import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
 
 export const SignUpForm = () => {
 
@@ -67,6 +68,21 @@ export const SignUpForm = () => {
         }
     };
 
+    const [acceptedDataProtection, setAcceptedDataProtection] = useState(false);
+
+    // const validForm = 
+    // form.name !=="" &&
+    // form.lastname !=="" &&
+    // form.username !=="" &&
+    // form.email !=="" &&
+    // form.password !=="" &&
+    // form.location !=="" &&
+    // acceptedDataProtection;
+
+    const validForm =
+    Object.values(form).every(Boolean) &&
+    acceptedDataProtection;
+
     return (
     <>
         <section className={style.content}>
@@ -96,7 +112,7 @@ export const SignUpForm = () => {
                     <input className={style.input} type="password" name='password' id="password" autoComplete='off' onChange={handleChange} required/>
                 </div>
                 <div>
-                    <label htmlFor="name" className={style.label}>Location</label>
+                    <label htmlFor="location" className={style.label}>Location</label>
                     <input className={style.input} type="text" name='location' id="location" autoComplete='off' onChange={handleChange} required/>
                 </div>
                 <div className={style.picture}>
@@ -109,9 +125,13 @@ export const SignUpForm = () => {
                         <span className={style.file}>{fileName}</span>
                     </div>
                 </div>
+                <DataProtection
+                checked={acceptedDataProtection}
+                onChange={(event) => setAcceptedDataProtection(event.target.checked)}
+/>
 
                 <section className={style.buttonSection}>
-                    <button  className={style.button} type="submit">SIGN UP</button>
+                    <button  className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
                     <button  className={style.button} >CANCEL</button>
                 </section>
             </form>

@@ -22,6 +22,7 @@ export const LogInForm = () => {
     const response = await UserService.login(form);
     console.log("User logged in:", response);
     localStorage.setItem("token", response.token); //token local storage for logIn persistence...do we keep it ?
+    setLoggedIn(true);
 
     } catch (error) {
     console.error("Login failed:", error);
