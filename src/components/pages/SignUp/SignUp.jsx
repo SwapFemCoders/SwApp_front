@@ -1,6 +1,5 @@
-import React from 'react'
-import { RedBackground } from '../../atoms/RedBackground.jsx/RedBackground'
-import { SignUpForm } from '../../organisms/SignUpForm/SignUpForm'
+import { RedBackground } from '../../atoms/RedBackground/RedBackground';
+import { SignUpForm } from '../../organisms/SignUpForm/SignUpForm';
 
 export const SignUp = () => {
     return (

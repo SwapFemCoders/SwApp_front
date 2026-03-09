@@ -1,6 +1,6 @@
 import React from 'react'
-import { RedBackground } from '../../atoms/RedBackground.jsx/RedBackground'
-import { LogInForm } from '../../organisms/LogInForm/LogInForm'
+import { RedBackground } from '../../atoms/RedBackground/RedBackground';
+import { LogInForm } from '../../organisms/LogInForm/LogInForm';
 
 export const LogIn = () => {
     return (
