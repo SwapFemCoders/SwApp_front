@@ -3,12 +3,13 @@ import TitleBox from "../../atoms/titleBox/TitleBox"
 import style from "./SignUpForm.module.css"
 import UserPath from '../../../services/UserPath';
 import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
+import ActionButton from '../../atoms/actionButton/ActionButton.jsx';
 
 export const SignUpForm = () => {
 
     const [form, setForm] = useState({
         name: "",
-        lastName: "",
+        lastname: "",
         username: "",
         email: "",
         location: "",
@@ -36,7 +37,8 @@ export const SignUpForm = () => {
         if (form.picture) {
         data.append("picture", form.picture);
         }
-        const response = await UserPath.createUser(data);
+        const response = await UserPath().createUser(data);
+        
         console.log("User created:", response);
         alert("User successfully created!");
         handleCancel();
@@ -50,7 +52,7 @@ export const SignUpForm = () => {
     const handleCancel = () => {
     setForm({
         name: "",
-        lastName: "",
+        lastname: "",
         username: "",
         email: "",
         location: "",
@@ -65,7 +67,11 @@ export const SignUpForm = () => {
 
         if (file) {
             setfileName(file.name);
-        }
+            setForm({
+        ...form,
+        picture: file
+        });
+    }
     };
 
     const [acceptedDataProtection, setAcceptedDataProtection] = useState(false);
@@ -100,8 +106,8 @@ export const SignUpForm = () => {
                 </div>
                 <div>
                     {/* VALIDATION OF THE USERNAME - NEED TO BE UNIQUE - CHECK THE API */}
-                    <label htmlFor="userName" className={style.label}>UserName</label>
-                    <input className={style.input} type="text" name='userName' id="userName" autoComplete='off' onChange={handleChange} required/>
+                    <label htmlFor="username" className={style.label}>UserName</label>
+                    <input className={style.input} type="text" name='username' id="userName" autoComplete='off' onChange={handleChange} required/>
                 </div>
                 <div>
                     <label htmlFor="email" className={style.label}>Email</label>
@@ -127,12 +133,13 @@ export const SignUpForm = () => {
                 </div>
                 <DataProtection
                 checked={acceptedDataProtection}
-                onChange={(event) => setAcceptedDataProtection(event.target.checked)}
-/>
+                onChange={(event) => setAcceptedDataProtection(event.target.checked)}/>
 
                 <section className={style.buttonSection}>
-                    <button  className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
-                    <button  className={style.button} >CANCEL</button>
+                    <ActionButton  className={style.button} type="submit" disabled={!validForm} text={"SIGN UP"}/>
+                    <ActionButton className={style.button} type="button" text={"CANCEL"} onClick={handleCancel}/>
+                    {/* <button className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
+                    <button className={style.button} >CANCEL</button> */}
                 </section>
             </form>
         </section>
