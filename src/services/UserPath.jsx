@@ -25,7 +25,7 @@ const UserPath =() =>{
 
     const createUser = async(userData) => {
         try{
-            const response = await axios.post("/api/v1/users", userData);
+            const response = await axios.post(url, userData);
             return response.data;
         }catch (error) {
             console.error ("Error creating user", error);
