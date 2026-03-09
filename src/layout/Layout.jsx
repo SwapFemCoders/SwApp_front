@@ -17,6 +17,7 @@ return (
         <section className={style.outlet}>
                 <Outlet/>
         </section>
+        
     </>
 );
 }

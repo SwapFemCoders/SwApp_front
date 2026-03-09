@@ -1,4 +1,3 @@
-import React from 'react'
 import style from "./RedBackground.module.css"
 
 export const RedBackground = ({content, color}) => {
