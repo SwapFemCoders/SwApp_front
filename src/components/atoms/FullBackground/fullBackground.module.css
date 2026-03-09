@@ -1,0 +1,36 @@
+.background {
+    background-color: #c8403c; 
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 20px;
+    padding: 0px;
+}
+
+.comicDivider {
+    grid-column: 1 / -1;
+    width: 100%;
+    /* Altura para unas 4 filas de puntos aproximadamente */
+    height: 35px; 
+    
+    /* La raya negra ahora va ARRIBA */
+    border-top: 8px solid #000;
+
+    /* Patrón de puntos intercalados (Efecto Halftone) */
+    background-image: 
+        radial-gradient(circle, #000 2.5px, transparent 3px), 
+        radial-gradient(circle, #000 2.5px, transparent 3px);
+    
+    /* El tamaño de la cuadrícula de puntos */
+    background-size: 20px 20px; 
+    
+    /* LA MAGIA: El segundo gradiente se desplaza 10px (la mitad de 20) 
+       para que los puntos queden en los huecos de la primera fila */
+    background-position: 0 0, 10px 10px;
+    
+    margin: 0px; 
+    padding-top: 5px;
+    background-repeat: repeat;
+    background-origin: content-box; 
+}

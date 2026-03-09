@@ -1,10 +1,10 @@
-import { RedBackground } from '../../atoms/RedBackground/RedBackground';
+import { SquareBackground } from '../../atoms/SquareBackground/SquareBackground';
 import { SignUpForm } from '../../organisms/SignUpForm/SignUpForm';
 
 export const SignUp = () => {
     return (
     <div>
-        <RedBackground color="#b55494" content={<SignUpForm/>} />
+        <SquareBackground color="#b55494" content={<SignUpForm/>} />
     </div>
     )
 }

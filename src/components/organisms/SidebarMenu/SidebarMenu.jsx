@@ -1,6 +1,7 @@
 import MenuItem from "../../molecules/MenuItem/MenuItem";
 import Avatar from "../../atoms/AvatarUser/AvatarUser";
 import styles from "./sidebar-menu.module.css";
+import Title from "../../atoms/title/Title"
 import { FcSynchronize } from "react-icons/fc";
 import { FcNews } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
@@ -18,36 +19,8 @@ const SidebarMenu = ({userName}) => {
 
     return(
         <>
-        {/*
-        <nav className={styles.sidebarContainer}>
-            <div className={styles.mobileHeader}>
-                <span className="styles.userName">{userName}</span>
-                <button className="styles.hamburger" onClick={toggleMenu}>
-                    {isOpen ? <CgClose /> : <RxHamburgerMenu />}
-                </button>
-            </div>
-            <ul className={`${styles.menuList} ${isOpen ? styles.open : ''}`}>
-                <li className={styles.btnMenu}>
-                    <span><FcShop/></span>Shop Swapp
-                </li>
-                <li className={styles.btnMenu}>
-                    <span><FcSynchronize/></span>My available swaps
-                </li>
-                <li className={styles.btnMenu}>
-                    <span><FcNews/></span>Create new article
-                </li>
-                <li className={styles.btnMenu}>
-                    <span><FcClock/></span>Swap history
-                </li>
-                <li className={styles.btnMenu}>
-                    <span><FcLike/></span>Favorites
-                </li>
-                <li className={styles.btnMenu}>
-                    <span><FcSettings/></span>Settings
-                </li>
-            </ul>
-        </nav>
-            */}
+        <Title text="Welcome"/>
+        
         <aside className={styles.sidebar}>
             
             <div className={styles.containerUser}>
