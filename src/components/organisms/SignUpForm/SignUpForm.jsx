@@ -3,14 +3,17 @@ import TitleBox from "../../atoms/titleBox/TitleBox"
 import style from "./SignUpForm.module.css"
 import UserPath from '../../../services/UserPath';
 import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
+import ActionButton from '../../atoms/actionButton/ActionButton.jsx';
+import Logo from '../../../assets/images/Logo.png';
 
 export const SignUpForm = () => {
 
     const [form, setForm] = useState({
         name: "",
         lastName: "",
-        username: "",
+        userName: "",
         email: "",
+        password: "",
         location: "",
         picture: null
     });
@@ -28,15 +31,28 @@ export const SignUpForm = () => {
         event.preventDefault()
         try {
         const data = new FormData();
-        data.append("name", form.name);
-        data.append("lastname", form.lastname);
-        data.append("username", form.username);
-        data.append("email", form.email);
-        data.append("location", form.location);
+
+        const user={
+            name: form.name,
+            lastName: form.lastName,
+            userName: form.userName,
+            email: form.email,
+            password: form.password,
+            location: form.location
+        };
+        data.append("user", new Blob([JSON.stringify(user)], { type: "application/json" })
+        );
         if (form.picture) {
-        data.append("picture", form.picture);
+            data.append("file", form.picture);
+        } else {
+            const response = await fetch(Logo);
+            const blob = await response.blob();
+
+            data.append("file", blob, "Logo.png");
         }
-        const response = await UserPath.createUser(data);
+        
+        const response = await UserPath().createUser(data);
+        
         console.log("User created:", response);
         alert("User successfully created!");
         handleCancel();
@@ -51,7 +67,7 @@ export const SignUpForm = () => {
     setForm({
         name: "",
         lastName: "",
-        username: "",
+        userName: "",
         email: "",
         location: "",
         picture: null
@@ -65,7 +81,11 @@ export const SignUpForm = () => {
 
         if (file) {
             setfileName(file.name);
-        }
+            setForm({
+        ...form,
+        picture: file
+        });
+    }
     };
 
     const [acceptedDataProtection, setAcceptedDataProtection] = useState(false);
@@ -95,8 +115,8 @@ export const SignUpForm = () => {
                     <input className={style.input} type="text" name='name' id="name" autoComplete='off' onChange={handleChange} required/>
                 </div>
                 <div>
-                    <label htmlFor="lastname" className={style.label}>Lastname</label>
-                    <input className={style.input} type="text" name='lastname' id="lastname" autoComplete='off' onChange={handleChange} required/>
+                    <label htmlFor="lastName" className={style.label}>Lastname</label>
+                    <input className={style.input} type="text" name='lastName' id="lastName" autoComplete='off' onChange={handleChange} required/>
                 </div>
                 <div>
                     {/* VALIDATION OF THE USERNAME - NEED TO BE UNIQUE - CHECK THE API */}
@@ -127,12 +147,13 @@ export const SignUpForm = () => {
                 </div>
                 <DataProtection
                 checked={acceptedDataProtection}
-                onChange={(event) => setAcceptedDataProtection(event.target.checked)}
-/>
+                onChange={(event) => setAcceptedDataProtection(event.target.checked)}/>
 
                 <section className={style.buttonSection}>
-                    <button  className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
-                    <button  className={style.button} >CANCEL</button>
+                    <ActionButton  className={style.button} type="submit" disabled={!validForm} text={"SIGN UP"}/>
+                    <ActionButton className={style.button} type="button" text={"CANCEL"} onClick={handleCancel}/>
+                    {/* <button className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
+                    <button className={style.button} >CANCEL</button> */}
                 </section>
             </form>
         </section>

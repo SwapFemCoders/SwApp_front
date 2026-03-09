@@ -15,7 +15,7 @@ const UserPath =() =>{
     
     const deleteUser = async (id) => {
         try {
-            const response = await axios.delete(`/api/users/${id}`);
+            const response = await axios.delete(`/api/v1/users/${id}`);
             return response.data;
         } catch (error) {
             console.error("Error deleting user", error);
@@ -25,7 +25,7 @@ const UserPath =() =>{
 
     const createUser = async(userData) => {
         try{
-            const response = await axios.post("/api/users", userData);
+            const response = await axios.post(url, userData);
             return response.data;
         }catch (error) {
             console.error ("Error creating user", error);
@@ -35,7 +35,7 @@ const UserPath =() =>{
 
     const updateUser = async (id, userData) => {
         try {
-            const response = await axios.put(`/api/users/${id}`, userData);
+            const response = await axios.put(`/api/v1/users/${id}`, userData);
         return response.data;
     } catch (error) {
         console.error("Error updating user", error);
