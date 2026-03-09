@@ -1,0 +1,9 @@
+.bar{
+    border: solid black;
+    border-width: 4px;
+    gap: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: center;
+    background-color: white;
+}

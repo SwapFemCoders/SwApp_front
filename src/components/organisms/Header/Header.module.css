@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+
+.logo{
+    position: fixed;
+    left: 0;
+    top: 20px;
+}
+
+.navbar{
+    position: absolute;
+    align-items: center;
+    top: 80px;
+}

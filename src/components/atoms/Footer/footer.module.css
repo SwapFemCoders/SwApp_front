@@ -1,0 +1,10 @@
+.footer{
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+}

@@ -1,0 +1,27 @@
+.body {
+    width: 100%;
+    height: 100%;
+    background-color: #3fb4c5;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    inset: 0;
+}
+
+.word {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 140vw;  
+    justify-content:space-around;
+    gap: 2px;
+
+    transform: translateX(-20vw);
+
+    
+}

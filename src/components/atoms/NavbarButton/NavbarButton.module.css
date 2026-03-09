@@ -1,0 +1,13 @@
+.text {
+    font-family:'Inter', sans-serif;
+    display: inline-block;
+    padding: 1em 2em 1em 2em;
+    font-size: 1.5rem;
+    color: black;
+    text-decoration: none;
+}
+
+.text:hover {
+    font-weight: bold;
+    transform: scale(1.2);
+}

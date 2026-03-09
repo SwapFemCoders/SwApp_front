@@ -1,0 +1,10 @@
+.pageTemplate {
+    position: fixed;
+    inset: 0;
+}
+
+.outlet {
+    position: relative;
+    top: 20rem;
+    z-index: 2;
+}
