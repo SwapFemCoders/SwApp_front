@@ -3,6 +3,7 @@ import Mascot from "../../atoms/Mascot/Mascot";
 import style from "./LandingPage.module.css";
 import RepeatingSection from "../../templates/RepeatingSection/RepeatingSection";
 import { SecondSectionLanding } from "../../organisms/SecondSectionLanding/SecondSectionLanding";
+import Footer from "../../atoms/Footer/Footer";
 
 const LandingPage = () => (
     <div className={style.page}>
@@ -14,6 +15,7 @@ const LandingPage = () => (
         <section className={style.section2}>
             <SecondSectionLanding/>
         </section>
+        <Footer/>
     </div>
 );
 

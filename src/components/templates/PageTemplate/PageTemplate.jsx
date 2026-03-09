@@ -5,6 +5,8 @@ import Navbar from "../../molecules/Navbar/Navbar";
 import { Header } from "../../organisms/Header/Header";
 import RepeatingSection from "../RepeatingSection/RepeatingSection";
 import style from "./PageTemplate.module.css";
+import Footer from "../../atoms/Footer/Footer";
+
 
 const PageTemplate = () => (
     <>
@@ -16,6 +18,8 @@ const PageTemplate = () => (
                 <RepeatingSection/>
             </div>
         </section>
+        <Footer />
+        
     </>
 );
 

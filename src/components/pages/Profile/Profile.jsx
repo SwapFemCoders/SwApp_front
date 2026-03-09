@@ -1,7 +1,8 @@
-import SidebarMenu from "../../organisms/SidebarMenu/SidebarMenu"
-import Title from "../../atoms/title/Title"
+import SidebarMenu from "../../organisms/SidebarMenu/SidebarMenu";
+import Title from "../../atoms/title/Title";
 import styles from './profile.module.css';
 import ArticleList from "../../organisms/ArticleList/ArticleList";
+import Footer from "../../atoms/Footer/Footer";
 
 export const Profile = () => {
     return (
@@ -17,6 +18,7 @@ export const Profile = () => {
         
     
     </main>
+    <Footer/>
     </>
     )
 }

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router';
 import style from "./Layout.module.css"
 import PageTemplate from '../components/templates/PageTemplate/PageTemplate';
 
+
 export const Layout = () => (
     <>
         <div className={style.pageTemplate}>
@@ -10,5 +11,6 @@ export const Layout = () => (
         <section className={style.outlet}>
                 <Outlet/>
         </section>
+        
     </>
 );
