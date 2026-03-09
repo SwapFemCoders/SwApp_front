@@ -1,4 +1,3 @@
-import React from 'react'
 import { RedBackground } from '../../atoms/RedBackground/RedBackground';
 import { LogInForm } from '../../organisms/LogInForm/LogInForm';
 
