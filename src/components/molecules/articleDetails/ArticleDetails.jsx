@@ -54,8 +54,8 @@ const ArticleDetails = ({ article, onClose }) => {
         
     const fullImageSrc = `data:image/png;base64,${article.picture}`;
     return (
-        <div className={styles.modal_overlay} onClick={onClose}>
-            <div className={styles.modal_content} onClick={e => e.stopPropagation()}>
+        <aside className={styles.modal_overlay} onClick={onClose}>
+            <article className={styles.modal_content} onClick={e => e.stopPropagation()}>
                 <div className={styles.fav_positioner}>
                     
                 </div>
@@ -63,29 +63,29 @@ const ArticleDetails = ({ article, onClose }) => {
                     <h2>{article.title.toUpperCase()}</h2>
                 </header>
 
-                <div className={styles.modal_body}>
-                    <div className={styles.image_container}>
+                <section className={styles.modal_body}>
+                    <figure className={styles.image_container}>
                         <img src={fullImageSrc} alt={article.title} />
-                    </div>
+                    </figure>
                     
-                    <div className={styles.details}>
+                    <section className={styles.details}>
                         <p><strong>Description:</strong> {article.description}</p>
                         <p><strong>Creation date:</strong> {article.date}</p>
                         <p><strong>State:</strong> {article.state}</p>
                         <p><strong>Listed by:</strong> @{article.creatorId.userName}</p>
-                    </div>
-                </div>
+                    </section>
+                </section>
 
-                <div className={styles.modal_actions}>
+                <footer className={styles.modal_actions}>
                     <ActionButton text= {loading ? "Loading..." : buttonText} 
                                     className = {buttonClass} onClick = {isClickable ? handleReserve : null} 
                                     disabled ={!isClickable || loading}/>
                      <FavoriteButton /> 
                     < CloseButton onClick={onClose} />
-                </div>
-            </div>
+                </footer>
+            </article>
             <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
-        </div>
+        </aside>
     );
 };
 
