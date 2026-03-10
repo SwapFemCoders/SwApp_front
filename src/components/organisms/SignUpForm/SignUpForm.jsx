@@ -42,6 +42,7 @@ export const SignUpForm = () => {
         };
         data.append("user", new Blob([JSON.stringify(user)], { type: "application/json" })
         );
+        
         if (form.picture) {
             data.append("file", form.picture);
         } else {
@@ -151,8 +152,6 @@ export const SignUpForm = () => {
                 <section className={style.buttonSection}>
                     <ActionButton  className="login" type="submit" disabled={!validForm} text={"SIGN UP"}/>
                     <ActionButton className="login" type="button" text={"CANCEL"} onClick={handleCancel}/>
-                    {/* <button className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
-                    <button className={style.button} >CANCEL</button> */}
                 </section>
             </form>
         </section>

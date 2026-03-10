@@ -43,7 +43,17 @@ const UserPath =() =>{
     }
 };
 
-return{ getUserById, createUser, updateUser, deleteUser}
+    const login = async (credentials) => {
+        try {
+        const response = await axios.post("http://localhost:8080/login", credentials);
+        return response.data;
+        } catch (error) {
+        console.error("Login error", error);
+        throw error;
+        }
+    };
+
+return{ getUserById, createUser, updateUser, deleteUser, login}
 
 }
 
