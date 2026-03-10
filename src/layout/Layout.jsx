@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import style from "./Layout.module.css"
 import PageTemplate from '../components/templates/PageTemplate/PageTemplate';
 import Footer from "../../src/components/atoms/Footer/Footer.jsx";
+import UserProvider from '../context/User/UserProvider.jsx';
 
 export function Layout() {
 
@@ -11,12 +12,14 @@ export function Layout() {
 );
 return (
     <>
-        <header className={style.pageTemplate}>
+        <UserProvider>
+            <header className={style.pageTemplate}>
                 <PageTemplate/>
-        </header>
-        <section className={style.outlet}>
+            </header>
+            <section className={style.outlet}>
                 <Outlet/>
-        </section>
+            </section>
+        </UserProvider>
         
     </>
 );

@@ -9,7 +9,7 @@ export const LogInForm = () => {
     password: ""
     });
 
-    const handleChange = (e) => {
+    const handleChange = (event) => {
     setForm({
     ...form,
     [e.target.name]: e.target.value
