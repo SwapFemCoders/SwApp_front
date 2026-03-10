@@ -42,6 +42,7 @@ export const SignUpForm = () => {
         };
         data.append("user", new Blob([JSON.stringify(user)], { type: "application/json" })
         );
+        
         if (form.picture) {
             data.append("file", form.picture);
         } else {
@@ -69,9 +70,12 @@ export const SignUpForm = () => {
         lastName: "",
         userName: "",
         email: "",
+        password: "",
         location: "",
         picture: null
     });
+        setfileName("");
+        setAcceptedDataProtection(false);
     };
 
     const [fileName, setfileName] = useState(" ");
@@ -90,17 +94,13 @@ export const SignUpForm = () => {
 
     const [acceptedDataProtection, setAcceptedDataProtection] = useState(false);
 
-    // const validForm = 
-    // form.name !=="" &&
-    // form.lastname !=="" &&
-    // form.username !=="" &&
-    // form.email !=="" &&
-    // form.password !=="" &&
-    // form.location !=="" &&
-    // acceptedDataProtection;
-
-    const validForm =
-    Object.values(form).every(Boolean) &&
+    const validForm = 
+    form.name !=="" &&
+    form.lastname !=="" &&
+    form.username !=="" &&
+    form.email !=="" &&
+    form.password !=="" &&
+    form.location !=="" &&
     acceptedDataProtection;
 
     return (
@@ -112,33 +112,33 @@ export const SignUpForm = () => {
             <form className={style.form} onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name" className={style.label}>Name</label>
-                    <input className={style.input} type="text" name='name' id="name" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="text" name='name' id="name" autoComplete='off' value={form.name} onChange={handleChange} required/>
                 </div>
                 <div>
                     <label htmlFor="lastName" className={style.label}>Lastname</label>
-                    <input className={style.input} type="text" name='lastName' id="lastName" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="text" name='lastName' id="lastName" autoComplete='off' value={form.lastName} onChange={handleChange} required/>
                 </div>
                 <div>
                     {/* VALIDATION OF THE USERNAME - NEED TO BE UNIQUE - CHECK THE API */}
                     <label htmlFor="userName" className={style.label}>UserName</label>
-                    <input className={style.input} type="text" name='userName' id="userName" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="text" name='userName' id="userName" autoComplete='off' value={form.userName} onChange={handleChange} required/>
                 </div>
                 <div>
                     <label htmlFor="email" className={style.label}>Email</label>
-                    <input className={style.input} type="text" name='email' id="email" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="text" name='email' id="email" autoComplete='off' value={form.email} onChange={handleChange} required/>
                 </div>
                 <div>
                     <label htmlFor="password" className={style.label}>Password</label>
-                    <input className={style.input} type="password" name='password' id="password" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="password" name='password' id="password" autoComplete='off' value={form.password} onChange={handleChange} required/>
                 </div>
                 <div>
                     <label htmlFor="location" className={style.label}>Location</label>
-                    <input className={style.input} type="text" name='location' id="location" autoComplete='off' onChange={handleChange} required/>
+                    <input className={style.input} type="text" name='location' id="location" autoComplete='off' value={form.location} onChange={handleChange} required/>
                 </div>
                 <div className={style.picture}>
                     <div>
                         <label htmlFor="picture" className={style.label}>Picture</label>
-                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} autoComplete='off'/>
+                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} value={form.picture} autoComplete='off'/>
                     </div>
                     <div className={style.uploadButton}>
                         <label htmlFor="picture" className={style.pictureButton}>UPLOAD</label>
@@ -150,10 +150,8 @@ export const SignUpForm = () => {
                 onChange={(event) => setAcceptedDataProtection(event.target.checked)}/>
 
                 <section className={style.buttonSection}>
-                    <ActionButton  className={style.button} type="submit" disabled={!validForm} text={"SIGN UP"}/>
-                    <ActionButton className={style.button} type="button" text={"CANCEL"} onClick={handleCancel}/>
-                    {/* <button className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
-                    <button className={style.button} >CANCEL</button> */}
+                    <ActionButton  className="login" type="submit" disabled={!validForm} text={"SIGN UP"}/>
+                    <ActionButton className="login" type="button" text={"CANCEL"} onClick={handleCancel}/>
                 </section>
             </form>
         </section>
