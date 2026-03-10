@@ -149,8 +149,8 @@ export const SignUpForm = () => {
                 onChange={(event) => setAcceptedDataProtection(event.target.checked)}/>
 
                 <section className={style.buttonSection}>
-                    <ActionButton  className={style.button} type="submit" disabled={!validForm} text={"SIGN UP"}/>
-                    <ActionButton className={style.button} type="button" text={"CANCEL"} onClick={handleCancel}/>
+                    <ActionButton  className="login" type="submit" disabled={!validForm} text={"SIGN UP"}/>
+                    <ActionButton className="login" type="button" text={"CANCEL"} onClick={handleCancel}/>
                     {/* <button className={style.button} type="submit" disabled={!validForm}>SIGN UP</button>
                     <button className={style.button} >CANCEL</button> */}
                 </section>
