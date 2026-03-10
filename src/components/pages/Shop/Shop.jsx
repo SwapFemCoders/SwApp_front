@@ -1,17 +1,18 @@
 
 import { AuthProvider, useAuth } from '../../../context/AuthContext';
-import Title from '../../atoms/title/Title';
+
 import AuthModal from '../../molecules/authModal/AuthModal';
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 import Footer from "../../atoms/Footer/Footer";
+import HeaderShop from '../../organisms/HeaderShop/HeaderShop';
 
 const ShopContent = () => {
     const { isModalOpen, closeAuthModal } = useAuth();
     return (
         
-        <main className={styles.shopContainer}>
+        <main className={styles.headerShopContainer}>
             <div className={styles.comicDivider}></div>
             {/* 2. Título de la página */}
             
@@ -41,7 +42,7 @@ const ShopContent = () => {
         <>
         <FullBackground content={
             <AuthProvider >
-                <Title text= "SHOP"/>
+                <HeaderShop/>
                 <ShopContent />
             </AuthProvider>
         }/>

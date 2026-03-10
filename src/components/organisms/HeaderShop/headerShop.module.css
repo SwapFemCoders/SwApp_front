@@ -1,0 +1,8 @@
+.subtitle{
+    grid-column: 1 / -1;/* Esto hace que el contenedor ocupe todo el ancho */
+    display: flex;       /* Usamos flex para centrar el cartelito amarillo */
+    justify-content: center;
+    padding: 20px 0;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
