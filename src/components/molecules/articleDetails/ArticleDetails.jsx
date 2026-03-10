@@ -1,19 +1,57 @@
-import { useAuth } from '../../../context/AuthContext';
 import ActionButton from '../../atoms/actionButton/ActionButton';
 import FavoriteButton from '../../atoms/favoriteButton/FavoriteButton';
 import CloseButton from '../../atoms/closeButton/CloseButton';
 import styles from './article-details.module.css';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../context/User/UserContext';
+import ArticlesPath from '../../../services/ArticlesPath';
+import AuthModal from '../AuthModal/AuthModal';
 
 const ArticleDetails = ({ article, onClose }) => {
-    const { isLogged,openAuthModal } = useAuth();
-    
-    const handleReserve = () =>{
+    console.log(article);
+    const { isLogged, setIsLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
+    const [currentArticle, setCurrentArticle] = useState(article);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token && !isLogged) {
+            setIsLogged(true);
+        }
+    }, [isLogged, setIsLogged]);
+
+    const handleReserve = async() =>{
         if (!isLogged) {
            return openAuthModal();
         }
 
+           setLoading(true);
+           try{
+            const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
+            setCurrentArticle(updatedArticle);
+            alert("¡Reserve confirmed!");
+        } catch (error) {
+            alert("Error to reserve: " + (error.response?.data || error.message));
+        } finally {
+            setLoading(false);
+        }
+    };
+        let buttonText = "RESERVE";
+        let isClickable = true;
+        let buttonClass = "reserve"; 
+
+        if (currentArticle.reservedId) {
+        if (currentArticle.reservedId === user?.id) {
+            
+            buttonText = "CANCEL RESERVE";
+            buttonClass = "default"; 
+        } else {
+            
+            buttonText = "RESERVED";
+            isClickable = false;
+            buttonClass = "reserved";
+        }
     }
-        //tema reserva con bbdd y algo q diga ok! reservado etc
+        
     const fullImageSrc = `data:image/png;base64,${article.picture}`;
     return (
         <div className={styles.modal_overlay} onClick={onClose}>
@@ -34,16 +72,19 @@ const ArticleDetails = ({ article, onClose }) => {
                         <p><strong>Description:</strong> {article.description}</p>
                         <p><strong>Creation date:</strong> {article.date}</p>
                         <p><strong>State:</strong> {article.state}</p>
-                        <p><strong>Listed by:</strong> @{article.creator}</p>
+                        <p><strong>Listed by:</strong> @{article.creatorId.userName}</p>
                     </div>
                 </div>
 
                 <div className={styles.modal_actions}>
-                    <ActionButton text= "RESERVE" className = "reserve" onClick = {handleReserve}/>
+                    <ActionButton text= {loading ? "Loading..." : buttonText} 
+                                    className = {buttonClass} onClick = {isClickable ? handleReserve : null} 
+                                    disabled ={!isClickable || loading}/>
                      <FavoriteButton /> 
                     < CloseButton onClick={onClose} />
                 </div>
             </div>
+            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </div>
     );
 };

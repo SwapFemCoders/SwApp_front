@@ -23,10 +23,29 @@ const ArticlesPath =() =>{
         }
     }
 
+    const reserveArticle = async (articleId) => {
+        const token = localStorage.getItem("token");
+          try {
+    const response = await axios.post(
+        `${url}/reserve/${articleId}`, 
+        {},
+        {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            }
+        );
+         return response.data;
+         } catch (error) {
+        console.error("Error reserving item", error);
+        throw error;
+         }
+    }
+
     
 
 
-return{ getAllArticles, getArticleById}
+return{ getAllArticles, getArticleById, reserveArticle}
 
 }
 export default ArticlesPath;
