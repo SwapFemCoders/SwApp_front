@@ -1,8 +1,22 @@
+.headerContainer{
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+
 .subtitle{
-    grid-column: 1 / -1;/* Esto hace que el contenedor ocupe todo el ancho */
-    display: flex;       /* Usamos flex para centrar el cartelito amarillo */
-    justify-content: center;
-    padding: 20px 0;
+    
+    text-align: center;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
+
+.containerFilter{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
