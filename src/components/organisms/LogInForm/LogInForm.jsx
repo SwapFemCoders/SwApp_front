@@ -3,7 +3,7 @@ import style from "./LogInForm.module.css"
 import TitleBox from '../../atoms/titleBox/TitleBox';
 import ActionButton from '../../atoms/actionButton/ActionButton';
 import {UserContext} from "../../../context/User/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const LogInForm = () => {
 
@@ -27,7 +27,7 @@ export const LogInForm = () => {
     try {
     const response = await login(form);
     console.log("User logged in:", response);
-    navigate("/Profile");
+    navigate("/Shop");
     } catch (error) {
     console.error("Login failed:", error);
     }
