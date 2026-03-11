@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react'
 import style from "./LogInForm.module.css"
 import TitleBox from '../../atoms/titleBox/TitleBox';
 import ActionButton from '../../atoms/actionButton/ActionButton';
-import UserPath from '../../../services/UserPath';
-import UserProvider from "../../../context/User/UserProvider";
 import {UserContext} from "../../../context/User/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export const LogInForm = () => {
 
     const { login } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
     userName: "",
@@ -27,8 +27,7 @@ export const LogInForm = () => {
     try {
     const response = await login(form);
     console.log("User logged in:", response);
-    
-
+    navigate("/Profile");
     } catch (error) {
     console.error("Login failed:", error);
     }
@@ -61,6 +60,9 @@ export const LogInForm = () => {
                     <label htmlFor="password" className={style.label}>Password</label>
                     <input className={style.input} type="password" name='password' id="password" autoComplete='on' value={form.password}
                     onChange={handleChange} required/>
+                </div>
+                <div className={style.noCuenta}>
+                <p>No tienes cuenta ? </p><a href="/SignUp">Sign Up</a> 
                 </div>
             
             <section className={style.buttonSection}>

@@ -5,8 +5,11 @@ import UserPath from '../../../services/UserPath';
 import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
 import ActionButton from '../../atoms/actionButton/ActionButton.jsx';
 import Logo from '../../../assets/images/Logo.png';
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
+
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         name: "",
@@ -15,20 +18,29 @@ export const SignUpForm = () => {
         email: "",
         password: "",
         location: "",
-        picture: null
+        picture: ""
     });
 
     const handleChange = (event) => {
         setForm({
             ...form,
-            [event.target.name]: event.target.files 
-            ? event.target.files[0] 
-            : event.target.value
+            [event.target.name]: event.target.value
         })
+        if (errors[name]) {
+        setErrors({
+            ...errors,
+            [event.target.name]: ""
+        });
     }
+};
 
     const handleSubmit = async(event) => {
         event.preventDefault()
+
+        if (!validateForm()) {
+        return;
+        }
+
         try {
         const data = new FormData();
 
@@ -40,6 +52,7 @@ export const SignUpForm = () => {
             password: form.password,
             location: form.location
         };
+        
         data.append("user", new Blob([JSON.stringify(user)], { type: "application/json" })
         );
         
@@ -57,6 +70,7 @@ export const SignUpForm = () => {
         console.log("User created:", response);
         alert("User successfully created!");
         handleCancel();
+        navigate("/LogIn");
 
     } catch (error) {
         console.error("Signup failed:", error);
@@ -72,7 +86,7 @@ export const SignUpForm = () => {
         email: "",
         password: "",
         location: "",
-        picture: null
+        picture: ""
     });
         setfileName("");
         setAcceptedDataProtection(false);
@@ -93,15 +107,31 @@ export const SignUpForm = () => {
     };
 
     const [acceptedDataProtection, setAcceptedDataProtection] = useState(false);
-
+    const [errors, setErrors] = useState({});
+    
     const validForm = 
     form.name !=="" &&
-    form.lastname !=="" &&
-    form.username !=="" &&
+    form.lastName !=="" &&
+    form.userName !=="" &&
     form.email !=="" &&
     form.password !=="" &&
     form.location !=="" &&
     acceptedDataProtection;
+
+    const validateForm = () => {
+    const newErrors = {};
+    if (!form.name.trim()) {
+        newErrors.name = "Name is required";
+    }
+    if (!form.email.includes("@")) {
+        newErrors.email = "Invalid email";
+    }
+    if (form.password.length < 6) {
+        newErrors.password = "Must be at least 6 characters";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+};
 
     return (
     <>
@@ -122,14 +152,23 @@ export const SignUpForm = () => {
                     {/* VALIDATION OF THE USERNAME - NEED TO BE UNIQUE - CHECK THE API */}
                     <label htmlFor="userName" className={style.label}>UserName</label>
                     <input className={style.input} type="text" name='userName' id="userName" autoComplete='off' value={form.userName} onChange={handleChange} required/>
+                    
                 </div>
-                <div>
+                
+                <div className={style.field}>
                     <label htmlFor="email" className={style.label}>Email</label>
-                    <input className={style.input} type="text" name='email' id="email" autoComplete='off' value={form.email} onChange={handleChange} required/>
+                    <div className={style.inputContainer}>
+                        {errors.email && (<span className={style.errorFloating}>{errors.email}</span>)}
+                        <input className={`${style.input} ${errors.email ? style.inputError : ""}`} type="text" name='email' id="email" autoComplete='off' value={form.email} onChange={handleChange} required/>
+                    </div>
                 </div>
-                <div>
+
+                <div className={style.field}>
                     <label htmlFor="password" className={style.label}>Password</label>
-                    <input className={style.input} type="password" name='password' id="password" autoComplete='off' value={form.password} onChange={handleChange} required/>
+                    <div className={style.inputContainer}>
+                    {errors.password && (<p className={style.errorFloating}>{errors.password}</p>)}
+                    <input className={`${style.input} ${errors.password ? style.inputError : ""}`} type="password" name='password' id="password" autoComplete='off' value={form.password} onChange={handleChange} required/>
+                    </div>
                 </div>
                 <div>
                     <label htmlFor="location" className={style.label}>Location</label>
@@ -138,7 +177,7 @@ export const SignUpForm = () => {
                 <div className={style.picture}>
                     <div>
                         <label htmlFor="picture" className={style.label}>Picture</label>
-                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} value={form.picture} autoComplete='off'/>
+                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} autoComplete='off'/>
                     </div>
                     <div className={style.uploadButton}>
                         <label htmlFor="picture" className={style.pictureButton}>UPLOAD</label>
