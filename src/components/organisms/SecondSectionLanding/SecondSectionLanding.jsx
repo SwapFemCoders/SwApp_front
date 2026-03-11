@@ -1,13 +1,12 @@
 import React from 'react'
-import { RedBackground } from '../../atoms/RedBackground/RedBackground'
+import { SquareBackground } from '../../atoms/SquareBackground/SquareBackground'
 import { PresentationText } from '../../molecules/PresentationText/PresentationText'
 import Shop from "../../pages/Shop/Shop.jsx";
 
 export const SecondSectionLanding = () => {
     return (
     <div>
-        <RedBackground content=<PresentationText/> />
-
+        <SquareBackground content={<PresentationText/>} />
     </div>
     )
 }
