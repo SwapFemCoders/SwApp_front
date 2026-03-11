@@ -5,7 +5,7 @@ import MockArticles from "../../../assets/Mocks/MockArticles";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 import ArticleDetails from "../../molecules/articleDetails/ArticleDetails";
 
-const ArticleList = () =>{
+const ArticleList = ({filters}) =>{
     const [list, setList] = useState([]);
     const[selectedArticle, setSelectedArticle] = useState(null); 
 

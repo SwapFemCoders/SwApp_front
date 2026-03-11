@@ -5,17 +5,21 @@ import styles from './article-details.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../context/User/UserContext';
 import ArticlesPath from '../../../services/ArticlesPath';
-import AuthModal from '../AuthModal/AuthModal';
+import AuthModal from '../authModal/AuthModal';
+
 
 const ArticleDetails = ({ article, onClose }) => {
     console.log(article);
     const { isLogged, setIsLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
+    console.log("mi user is" + user);
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token && !isLogged) {
+        if (token && !user === null) {
             setIsLogged(true);
+        }else{
+            setIsLogged(false);
         }
     }, [isLogged, setIsLogged]);
 
