@@ -25,12 +25,20 @@ const ArticleDetails = ({ article, onClose }) => {
         if (!user || !localStorage.getItem("token")) {
            return openAuthModal();
         }
+        const isCancelling = currentArticle.reservedId?.id === user?.id;
            setLoading(true);
            try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
             setCurrentArticle(updatedArticle);
-            alert("¡Reserve confirmed!");
+            if (isCancelling) {
+            alert("Reservation cancelled successfully");
+        } else {
+            alert("Reserve confirmed!");
+        }
         } catch (error) {
+            if (error.response?.status === 401 || error.response?.status === 403) {
+            return; 
+        }
             alert("Error to reserve: " + (error.response?.data || error.message));
         } finally {
             setLoading(false);
@@ -39,8 +47,6 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonText = "RESERVE";
         let isClickable = true;
         let buttonClass = "reserve"; 
-console.log("ID del que reservó:", currentArticle.reservedId?.id || currentArticle.reservedId);
-console.log("ID de mi usuario logueado:", user?.id);
 
         if (currentArticle.reservedId) {
         if (currentArticle.reservedId === user?.id) {
