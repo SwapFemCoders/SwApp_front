@@ -4,8 +4,12 @@ import style from "./LandingPage.module.css";
 import RepeatingSection from "../../templates/RepeatingSection/RepeatingSection";
 import { SecondSectionLanding } from "../../organisms/SecondSectionLanding/SecondSectionLanding";
 import Footer from "../../atoms/Footer/Footer";
+import { useContext } from "react";
+import { UserContext } from "../../../context/User/UserContext";
 
-const LandingPage = () => (
+const LandingPage = () => {
+    const user = useContext(UserContext);
+    return(
     <div className={style.page}>
         <section className={style.section1}>
                 <div className={style.mascot}>
@@ -17,6 +21,7 @@ const LandingPage = () => (
         </section>
         <Footer/>
     </div>
-);
+    ) 
+};
 
 export default LandingPage;
