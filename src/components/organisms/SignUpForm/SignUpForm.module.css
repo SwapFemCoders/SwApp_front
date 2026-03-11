@@ -37,6 +37,39 @@
     font-size: 2rem;
 }
 
+.field{
+    display:flex;
+    align-items:center;
+    margin-bottom:1.5rem;
+}
+
+.inputContainer{
+    position:relative;
+    width:15rem;
+}
+
+.error{
+    height:16px;
+    color: rgb(255, 0, 0);
+    font-family:'Inter', sans-serif;
+    margin-bottom: 4px;
+}
+
+.inputError{
+    border: 2px solid red;
+}
+
+.errorFloating{
+    position:absolute;
+    font-family:'Inter', sans-serif;
+    top:-8px;
+    left:12px;
+    color:red;
+    background:white;
+    padding:0 4px;
+    line-height:1;
+}
+
 .pictureButton{
     display: flex;
     justify-content: center;
