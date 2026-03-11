@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-.content{
-=======
 .shopContainer {
   display: grid;
   grid-template-columns: 280px 1fr 200px; /* Ancho fijo para el lateral izquierdo */
@@ -33,6 +30,5 @@
 }
 
 .content {
->>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
     padding: 10px;
 }

@@ -36,8 +36,6 @@ const ArticlesPath =() =>{
             throw error;
         }
     }
-
-return{ getAllArticles, getArticleById, createArticle}
     const reserveArticle = async (articleId) => {
   
     try {
@@ -49,8 +47,7 @@ return{ getAllArticles, getArticleById, createArticle}
         throw error;
          }
     }
-
-return{ getAllArticles, getArticleById, reserveArticle}
-
+return{ getAllArticles, getArticleById, createArticle, reserveArticle}
+    
 }
 export default ArticlesPath;

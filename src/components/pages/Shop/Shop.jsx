@@ -1,88 +1,47 @@
+
 import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import Title from '../../atoms/title/Title';
 import AuthModal from '../../molecules/authModal/AuthModal';
-import { FullBackground } from "../../atoms/FullBackground/FullBackground";
+// import { RedBackground } from "../../atoms/RedBackground/RedBackground";
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
-import Footer from "../../atoms/Footer/Footer";
-<<<<<<< HEAD
-import HeaderShop from '../../organisms/HeaderShop/HeaderShop';
-import { useState } from "react";
-
-const ShopContent = ({category, sortNewest}) => {
-    const { isModalOpen, closeAuthModal } = useAuth();
-=======
-import { useEffect, useState } from 'react';
-import SidebarFilters from '../../organisms/SidebarFilters/SidebarFilters';
-import ArticlesPath from '../../../services/ArticlesPath';
 
 const ShopContent = () => {
-   const { isModalOpen, closeAuthModal } = useAuth();
-   const [list, setList] = useState([]);
-   const [filters, setFilters] = useState({ searchTerm: '', category: 'ALL' });
-   const [loading, setLoading] = useState(true);
-
-    useEffect(()=>{
-    //setList(MockArticles);
-        ArticlesPath().getAllArticles().then(data =>{setList(data)});
-    }, []);
-
-
-
-
-   const handleFilterChange = (newFilters) => {
-        setFilters(newFilters);
-    };
-
->>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
+    const { isModalOpen, closeAuthModal } = useAuth();
     return (
-        <>
-        <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
-        <main>
+        <main className={styles.shopContainer}>
+            <div className={styles.comicDivider}></div>
+            {/* 2. Título de la página */}
+            <Title text= "SHOP"/>
+
+            {/* 3. Lateral Izquierdo */}
+            <aside className={`${styles.sidebar} ${styles.left}`}>
+                <div className={styles.placeholder}>FILTERS / AD</div>
+            </aside>
+
+            {/* 4. Contenido Principal (Nuestra Lista) */}
             <section className={styles.content}>
-<<<<<<< HEAD
-                <ArticleList 
-                    category={category}
-                    sortNewest={sortNewest}/>
-            </section>          
-=======
-                <ArticleList  filters ={filters}/>
+                <ArticleList />
             </section>
 
             {/* 5. Lateral Derecho */}
             <aside className={`${styles.sidebar} ${styles.right}`}>
-                <SidebarFilters 
-                    articles={[]} 
-                    filters={filters} 
-                    onFilter={handleFilterChange} 
-                />
-            </aside>           
+                <div className={styles.placeholder}>INFO / AD</div>
+            </aside>
+
+            {/* 6. Footer (Opcional) */}
+            <footer className={styles.footer}>
+                <div className={styles.placeholder}>FOOTER</div>
+            </footer>
             <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
->>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
         </main>
-       </> 
     );
 };
 
  export default function Shop() {
-    const [category, setCategory] = useState("all");
-    const [sortNewest, setSortNewest] = useState(true);
-
-    const sortByDate = () => {
-        setSortNewest(!sortNewest);
-    };
     return (
-        <>
-        <FullBackground content={
-            <AuthProvider >
-                <HeaderShop 
-                    setCategory={setCategory}
-                    sortByDate={sortByDate}/>
-                <ShopContent 
-                    category={category}
-                    sortNewest={sortNewest}/>
-            </AuthProvider>
-        }/>
-        <Footer/>
-        </>
+        <AuthProvider >
+            <ShopContent />
+        </AuthProvider>
     );
 }
