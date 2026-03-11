@@ -5,7 +5,8 @@ import UserPath from '../../../services/UserPath';
 import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
 import ActionButton from '../../atoms/actionButton/ActionButton.jsx';
 import Logo from '../../../assets/images/Logo.png';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router';
+
 
 export const SignUpForm = () => {
 

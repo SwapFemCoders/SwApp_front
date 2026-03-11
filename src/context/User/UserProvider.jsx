@@ -1,28 +1,63 @@
-import { Children, useState } from "react"
+import { useState, useEffect } from "react"
 import { UserContext } from "./UserContext"
 import UserPath from "../../services/UserPath";
 
 const UserProvider = ({children}) => {
-    //const user = UserPath().getUserById;
-
-    const userService = UserPath();
 
     const [isLogged, setIsLogged] = useState(false); 
     const [isModalOpen, setIsModalOpen] = useState (false);
     const [user, setUser] = useState(null);
 
+    useEffect(() => {
+        const savedUser = localStorage.getItem("userData");
+        const savedToken = localStorage.getItem("token");
+        if (!savedToken || !savedUser) {
+            logout();
+        } else {
+            setUser(JSON.parse(savedUser));
+            setIsLogged(true);
+        }
+    }, []);
+
     const openAuthModal =() => setIsModalOpen(true);
     const closeAuthModal = () => setIsModalOpen(false);
 
     const login = async (credentials) => {
-    const response = await userService.login(credentials);
-    console.log("1. Respuesta del servidor:", response);
-    localStorage.setItem("token", response.token);
-    setUser(response.user);
+        try {
+            console.log("Intentando login...")
+        const response = await UserPath().login(credentials);
+        const authHeader = response.headers['authorization']; 
+        const token = authHeader ? authHeader.replace("Bearer ", "") : null;
+        const userData = response.data;
+
+        if (token) {
+    
+        const loggedUser = {
+        id: userData.id,
+        username: userData.userName,
+        location: userData.location,
+        foto: userData.picture ? `data:image/jpeg;base64,${userData.picture}` : null 
+            };
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("userData", JSON.stringify(loggedUser));
+    console.log("Login exitoso. Usuario:", userData.userName);
+
+    setUser(loggedUser);
     setIsLogged(true);
     };
+} catch (error) {
+            console.error("Error en login:", error);
+        }
+    };
 
-    const logout = () => { setIsLogged(false)};
+    const logout = () => { 
+        // localStorage.removeItem("token");
+        // localStorage.removeItem("userData");
+        localStorage.clear();
+        setUser(null);
+        setIsLogged(false)
+    };
 
     return (
         <UserContext.Provider value={{ isLogged, setIsLogged, login, logout, user,  isModalOpen, openAuthModal, closeAuthModal}}>

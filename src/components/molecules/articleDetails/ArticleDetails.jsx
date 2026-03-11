@@ -10,24 +10,21 @@ import AuthModal from '../authModal/AuthModal';
 
 const ArticleDetails = ({ article, onClose }) => {
     console.log(article);
-    const { isLogged, setIsLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
+    const { isLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
-    console.log("mi user is" + user);
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token && !user === null) {
-            setIsLogged(true);
-        }else{
-            setIsLogged(false);
-        }
-    }, [isLogged, setIsLogged]);
+
+
+
+    console.log("mi user is", user);
+    console.log("ESTADO ACTUAL:", { isLogged, user });
+    
+    
 
     const handleReserve = async() =>{
-        if (!isLogged) {
+        if (!user || !localStorage.getItem("token")) {
            return openAuthModal();
         }
-
            setLoading(true);
            try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
@@ -42,6 +39,8 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonText = "RESERVE";
         let isClickable = true;
         let buttonClass = "reserve"; 
+console.log("ID del que reservó:", currentArticle.reservedId?.id || currentArticle.reservedId);
+console.log("ID de mi usuario logueado:", user?.id);
 
         if (currentArticle.reservedId) {
         if (currentArticle.reservedId === user?.id) {

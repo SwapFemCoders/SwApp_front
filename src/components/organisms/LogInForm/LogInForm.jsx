@@ -3,7 +3,7 @@ import style from "./LogInForm.module.css"
 import TitleBox from '../../atoms/titleBox/TitleBox';
 import ActionButton from '../../atoms/actionButton/ActionButton';
 import {UserContext} from "../../../context/User/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const LogInForm = () => {
 

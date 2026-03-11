@@ -1,11 +1,12 @@
 import axios from "axios";
+import api from './api';
 
 const ArticlesPath =() =>{
-    const url = "http://localhost:8080/api/v1/articles";
+    const url = "/api/v1/articles";
 
     const getAllArticles = async() =>{
         try{
-            const response = await axios.get(url);
+            const response = await api.get(url);
             return response.data;
         } catch (error) {
             console.error ("Error to obtains articles", error);
@@ -15,7 +16,7 @@ const ArticlesPath =() =>{
 
     const getArticleById = async(id) =>{
         try{
-            const response = await axios.get(`${url}/${id}`);
+            const response = await api.get(`${url}/${id}`);
             return response.data;
         } catch (error) {
             console.error ("Error to obtains article details", error);
@@ -24,26 +25,16 @@ const ArticlesPath =() =>{
     }
 
     const reserveArticle = async (articleId) => {
-        const token = localStorage.getItem("token");
-          try {
-    const response = await axios.post(
-        `${url}/reserve/${articleId}`, 
-        {},
-        {
-                headers: {
-                    'Authorization': `Bearer ${token}` 
-                }
-            }
-        );
+  
+    try {
+        const response = await api.put(
+        `${url}/${articleId}/reserve`,{}); 
          return response.data;
          } catch (error) {
         console.error("Error reserving item", error);
         throw error;
          }
     }
-
-    
-
 
 return{ getAllArticles, getArticleById, reserveArticle}
 
