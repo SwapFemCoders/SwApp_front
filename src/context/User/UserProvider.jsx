@@ -17,10 +17,12 @@ const UserProvider = ({children}) => {
     const response = await userService.login(credentials);
     localStorage.setItem("token", response.token);
     setIsLogged(true);
-};
+    };
+
+    const logout = () => { setIsLogged(false)};
 
     return (
-        <UserContext.Provider value={{ isLogged, setIsLogged, login, user,  isModalOpen, openAuthModal, closeAuthModal}}>
+        <UserContext.Provider value={{ isLogged, setIsLogged, login, logout, user,  isModalOpen, openAuthModal, closeAuthModal}}>
             {children}
         </UserContext.Provider>
     )
