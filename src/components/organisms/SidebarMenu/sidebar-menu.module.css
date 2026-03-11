@@ -75,19 +75,14 @@
   margin-left: 25px;
 }
 
-/* .selected{
-  background: fuchsia;
-  filter: brightness(1.2);
-  transform: translateX(25px);
-  filter: brightness(1.2);
-  box-shadow: 5px 3px 3px #000;
-  z-index: 30;
-  margin: 0;
-  border-top: 3px #000;
-  border-left: 3px #000;
-  border-bottom: 3px #000;
-  
-} */
+/* Fuerza al NavLink a ocupar todo el ancho y no interferir */
+.navLink {
+  display: block; 
+  width: 100%;
+  text-decoration: none; /* Quita el subrayado azul de link */
+}
+
+
 
 /*-----------CSS MOBILE-----------*/
 

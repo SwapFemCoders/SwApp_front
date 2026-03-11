@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import TitleBox from "../../atoms/titleBox/TitleBox"
 import style from "./SignUpForm.module.css"
 import UserPath from '../../../services/UserPath';
