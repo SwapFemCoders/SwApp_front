@@ -2,12 +2,11 @@
   display:flex;
   align-items: center;
   justify-content: space-between;
-  gap:20px;
+  gap:5px;
 }
-
-
-
-.btnMenu:hover{
+ 
+.btnMenu:hover,
+.active{
   filter: brightness(1.2);
   box-shadow: 5px 3px 3px #000;
   z-index: 30;
@@ -22,10 +21,10 @@
 .btnMenu:hover::before{
   left: -25px;
   width: 25px;
-  border-left: 1px solid #000;
-  /*border: 3px solid #000;*/
-  
+  border-left: 1px solid #000; 
 }
+
+
 
 .label {
   font-size: 18px;

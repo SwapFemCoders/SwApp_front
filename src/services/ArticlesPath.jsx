@@ -4,6 +4,19 @@ import api from './api';
 const ArticlesPath =() =>{
     const url = "/api/v1/articles";
 
+    const createArticle = async (formData) => {
+        try{
+            const response = await axios.post(url, {
+                method: "POST",
+                body: formData
+            });
+            return await response.json();
+        } catch(error){
+            console.error ("Error to create new article", error);
+            throw error;
+        }
+    };
+
     const getAllArticles = async() =>{
         try{
             const response = await api.get(url);
@@ -24,6 +37,7 @@ const ArticlesPath =() =>{
         }
     }
 
+return{ getAllArticles, getArticleById, createArticle}
     const reserveArticle = async (articleId) => {
   
     try {

@@ -1,11 +1,16 @@
-
 import { AuthProvider, useAuth } from '../../../context/AuthContext';
-import Title from '../../atoms/title/Title';
 import AuthModal from '../../molecules/authModal/AuthModal';
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
 import Footer from "../../atoms/Footer/Footer";
+<<<<<<< HEAD
+import HeaderShop from '../../organisms/HeaderShop/HeaderShop';
+import { useState } from "react";
+
+const ShopContent = ({category, sortNewest}) => {
+    const { isModalOpen, closeAuthModal } = useAuth();
+=======
 import { useEffect, useState } from 'react';
 import SidebarFilters from '../../organisms/SidebarFilters/SidebarFilters';
 import ArticlesPath from '../../../services/ArticlesPath';
@@ -28,20 +33,18 @@ const ShopContent = () => {
         setFilters(newFilters);
     };
 
+>>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
     return (
-        
-        <main className={styles.shopContainer}>
-            <div className={styles.comicDivider}></div>
-            {/* 2. Título de la página */}
-            
-
-            {/* 3. Lateral Izquierdo */}
-            <aside className={`${styles.sidebar} ${styles.left}`}>
-                <div className={styles.placeholder}>FILTERS / AD</div>
-            </aside>
-
-            {/* 4. Contenido Principal (Nuestra Lista) */}
+        <>
+        <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
+        <main>
             <section className={styles.content}>
+<<<<<<< HEAD
+                <ArticleList 
+                    category={category}
+                    sortNewest={sortNewest}/>
+            </section>          
+=======
                 <ArticleList  filters ={filters}/>
             </section>
 
@@ -54,18 +57,29 @@ const ShopContent = () => {
                 />
             </aside>           
             <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
+>>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
         </main>
-        
+       </> 
     );
 };
 
  export default function Shop() {
+    const [category, setCategory] = useState("all");
+    const [sortNewest, setSortNewest] = useState(true);
+
+    const sortByDate = () => {
+        setSortNewest(!sortNewest);
+    };
     return (
         <>
         <FullBackground content={
             <AuthProvider >
-                <Title text= "SHOP"/>
-                <ShopContent />
+                <HeaderShop 
+                    setCategory={setCategory}
+                    sortByDate={sortByDate}/>
+                <ShopContent 
+                    category={category}
+                    sortNewest={sortNewest}/>
             </AuthProvider>
         }/>
         <Footer/>
