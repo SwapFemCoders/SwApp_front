@@ -49,7 +49,7 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonClass = "reserve"; 
 
         if (currentArticle.reservedId) {
-        if (currentArticle.reservedId === user?.id) {
+        if (currentArticle.reservedId?.id === user?.id) {
             
             buttonText = "CANCEL RESERVE";
             buttonClass = "default"; 
