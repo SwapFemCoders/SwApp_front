@@ -54,9 +54,6 @@ const ArticlesPath =() =>{
         }
     }
 
-
-
-
     const reserveArticle = async (articleId) => {
   
     try {
@@ -68,10 +65,21 @@ const ArticlesPath =() =>{
         throw error;
         }
     }
+
+    const deleteArticle = async(articleId) => {
+        try{
+            const response = await api. delete(`${url}/${articleId}`);
+            return response.data;
+        } catch(error){
+            console.error ("Error deleting article", error);
+            throw error;
+        }
+    }
 return{ getAllArticles, getArticleById, 
     createArticle, reserveArticle,
 getAllAvailableArticlesByCreatorId,
-getAllReservedArticles}
+getAllReservedArticles,
+deleteArticle}
     
 }
 export default ArticlesPath;
