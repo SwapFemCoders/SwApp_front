@@ -10,10 +10,6 @@ const SwapHistory = () => {
     ArticlesPath().getAllReservedArticles().then(data => setList(data));
     },[]);
 
-
-
-
-
   return (
     <section className={styles.content}>
                 <ArticleList articles={list}/>
