@@ -1,0 +1,9 @@
+.containerBtnFilter {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+    padding: 20px;
+    gap: 25px;
+    
+}
+

@@ -5,7 +5,7 @@ import MockArticles from "../../../assets/Mocks/MockArticles";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 import ArticleDetails from "../../molecules/articleDetails/ArticleDetails";
 
-const ArticleList = ({filters}) =>{
+const ArticleList = ({ filters }) =>{
     const [list, setList] = useState([]);
     const[selectedArticle, setSelectedArticle] = useState(null); 
 
@@ -24,6 +24,16 @@ const ArticleList = ({filters}) =>{
     }
     };
     
+    // const filteredArticles = list
+    //     .filter(article => 
+    //         category === "all" || article.category === category
+    //     )
+    //     .sort((a,b)=>
+    //         sortNewest
+    //         ? new Date(b.date) - new Date(a.date)
+    //         : new Date(a.date) - new Date(b.date)
+    //     );
+        
     return(
         <>
         {list && list.length >0?(

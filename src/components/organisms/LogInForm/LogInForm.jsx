@@ -27,7 +27,7 @@ export const LogInForm = () => {
     try {
     const response = await login(form);
     console.log("User logged in:", response);
-    navigate("/Profile");
+    navigate("/Shop");
     } catch (error) {
     console.error("Login failed:", error);
     }
