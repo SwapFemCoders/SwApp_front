@@ -3,6 +3,7 @@ import ArticlesContext from "../../../context/ArticlesContext";
 import styles from "./articleForm.module.css";
 import Title from "../../atoms/title/Title";
 import ActionButton from "../../atoms/actionButton/ActionButton";
+import ArticlesPath from '../../../services/ArticlesPath';
 
 const ArticleForm = () => {
   const { createArticle } = useContext(ArticlesContext);
@@ -10,17 +11,13 @@ const ArticleForm = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    creationDate: "",
+    date: "",
     state: "",
     category: "",
-    user: "",
+    picture: ""
   });
 
-  const [image, setImage] = useState(null);
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  const [picture, setPicture] = useState(null);
 
   const handleChange = (e) => {
     setForm({
@@ -34,16 +31,21 @@ const ArticleForm = () => {
     try {
       const formData = new FormData();
 
-      formData.append("title", form.title);
-      formData.append("description", form.description);
-      formData.append("creationDate", form.creationDate);
-      formData.append("state", form.state);
-      formData.append("category", form.category);
-      formData.append("user", form.user);
-      formData.append("image", image);
+      const article={
+        title: form.title,
+        description: form.description,
+        date: form.date,
+        state: form.state,
+        category: form.category,
+      };
+      formData.append("article", new Blob([JSON.stringify(article)], { type: "application/json" })
+        );
+      formData.append("file", form.picture);
 
-      await createArticle(formData);
-    } catch (error) {
+      const response = await ArticlesPath().createArticle(formData);
+      }
+
+      catch (error) {
       console.error("New Article failed:", error);
       alert("Error creating article");
     }
@@ -53,30 +55,33 @@ const ArticleForm = () => {
     setForm({
       title: "",
       description: "",
-      creationDate: "",
+      date: "",
       state: "",
       category: "",
-      user: "",
     });
-
-    setImage(null);
+    setPicture(null);
   };
   const [fileName, setfileName] = useState(" ");
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
 
-    if (file) {
-      setfileName(file.name);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            setfileName(file.name);
+            setForm({
+        ...form,
+        picture: file
+        });
     }
-  };
+    };
+
   const validForm =
     form.title !== "" &&
     form.description !== "" &&
-    form.creationDate !== "" &&
+    form.date !== "" &&
     form.state !== "" &&
     form.category !== "" &&
-    form.user !== "" &&
-    image !== null;
+    !!form.picture;
 
   return (
     <>
@@ -110,12 +115,12 @@ const ArticleForm = () => {
 
           <div>
             <label htmlFor="date" className={styles.label}>
-              Creation Date
+              date
             </label>
             <input
               className={styles.input}
               type="date"
-              name="creationDate"
+              name="date"
               onChange={handleChange}
             />
           </div>
@@ -127,10 +132,13 @@ const ArticleForm = () => {
             <select
               className={styles.input}
               name="state"
+              value={form.state}
               onChange={handleChange}
             >
-              <option>Used</option>
-              <option>New</option>
+              <option value="">Select state</option>
+              <option value="EXCELLENT">Excelent</option>
+              <option value="GOOD">Good</option>
+              <option value="REGULAR">Regular</option>
             </select>
           </div>
 
@@ -141,23 +149,15 @@ const ArticleForm = () => {
             <select
               className={styles.input}
               name="category"
+              value={form.category}
               onChange={handleChange}
             >
-              <option>Clothes</option>
-              <option>Electronics</option>
+              <option value="">Select Category</option>
+              <option value="SHOES">Shoes</option>
+              <option value="TSHIRTS">T-shirts</option>
+              <option value="JACKET">Jacket</option>
+              <option value="PANTS">Pants</option>
             </select>
-          </div>
-
-          <div>
-            <label htmlFor="user" className={styles.label}>
-              User
-            </label>
-            <input
-              className={styles.input}
-              name="user"
-              placeholder="User"
-              onChange={handleChange}
-            />
           </div>
 
           <div className={styles.picture}>
