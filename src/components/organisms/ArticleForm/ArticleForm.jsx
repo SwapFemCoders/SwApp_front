@@ -43,6 +43,10 @@ const ArticleForm = () => {
       formData.append("file", form.picture);
 
       const response = await ArticlesPath().createArticle(formData);
+
+      console.log("Article created successfully", response);
+        alert("Article created successfully");
+        handleCancel();
       }
 
       catch (error) {
@@ -50,7 +54,7 @@ const ArticleForm = () => {
       alert("Error creating article");
     }
   };
-
+  
   const handleCancel = () => {
     setForm({
       title: "",
@@ -58,8 +62,11 @@ const ArticleForm = () => {
       date: "",
       state: "",
       category: "",
+      picture: ""
     });
+    setfileName("");
     setPicture(null);
+    
   };
   const [fileName, setfileName] = useState(" ");
 
@@ -95,6 +102,7 @@ const ArticleForm = () => {
             <input
               className={styles.input}
               name="title"
+              value={form.title}  
               placeholder=" Name article"
               onChange={handleChange}
               required
@@ -108,6 +116,7 @@ const ArticleForm = () => {
             <textarea
               className={styles.input}
               name="description"
+              value={form.description}  
               placeholder="Description"
               onChange={handleChange}
             />
@@ -121,6 +130,7 @@ const ArticleForm = () => {
               className={styles.input}
               type="date"
               name="date"
+              value={form.date}  
               onChange={handleChange}
             />
           </div>
@@ -136,7 +146,7 @@ const ArticleForm = () => {
               onChange={handleChange}
             >
               <option value="">Select state</option>
-              <option value="EXCELLENT">Excelent</option>
+              <option value="EXCELLENT">Excellent</option>
               <option value="GOOD">Good</option>
               <option value="REGULAR">Regular</option>
             </select>
@@ -154,7 +164,7 @@ const ArticleForm = () => {
             >
               <option value="">Select Category</option>
               <option value="SHOES">Shoes</option>
-              <option value="TSHIRTS">T-shirts</option>
+              <option value="T_SHIRTS">T-shirts</option>
               <option value="JACKET">Jacket</option>
               <option value="PANTS">Pants</option>
             </select>
@@ -169,6 +179,7 @@ const ArticleForm = () => {
                 type="file"
                 name="picture"
                 id="picture"
+                value={form.picture}  
                 hidden
                 autoComplete="off"
                 onChange={handleFileChange}
@@ -183,13 +194,13 @@ const ArticleForm = () => {
           </div>
           <section className={styles.buttonSection}>
             <ActionButton
-              className={styles.button}
+              className="login"
               type="submit"
               disabled={!validForm}
               text={"CREATE"}
             />
             <ActionButton
-              className={styles.button}
+              className="login"
               type="button"
               text={"CANCEL"}
               onClick={handleCancel}
