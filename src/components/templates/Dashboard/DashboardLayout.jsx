@@ -11,12 +11,12 @@ const DashboardLayout = () => {
 
   return (
     <section>
-      <div className="styles.layout">
-        <SidebarMenu  />
-      
-      <main className={styles.content}>
-        <Outlet />
-      </main>
+      <div className={styles.layout}>
+          <SidebarMenu  />
+        
+        <main className={styles.content}>
+          <Outlet />
+        </main>
       </div>
     </section>
   );

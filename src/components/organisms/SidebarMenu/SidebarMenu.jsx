@@ -19,7 +19,6 @@ const SidebarMenu = () => {
 
     return(
         <>
-        <Title text="Welcome"/>
         
         <aside className={styles.sidebar}>
             
