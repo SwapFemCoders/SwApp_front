@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { UserContext } from "./UserContext"
 import UserPath from "../../services/UserPath";
+import AuthModal from "../../components/molecules/authModal/AuthModal";
 
 const UserProvider = ({children}) => {
 
@@ -52,8 +53,6 @@ const UserProvider = ({children}) => {
     };
 
     const logout = () => { 
-        // localStorage.removeItem("token");
-        // localStorage.removeItem("userData");
         localStorage.clear();
         setUser(null);
         setIsLogged(false)
@@ -62,6 +61,7 @@ const UserProvider = ({children}) => {
     return (
         <UserContext.Provider value={{ isLogged, setIsLogged, login, logout, user,  isModalOpen, openAuthModal, closeAuthModal}}>
             {children}
+             <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </UserContext.Provider>
     )
 }

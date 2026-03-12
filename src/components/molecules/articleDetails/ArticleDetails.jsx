@@ -93,7 +93,7 @@ const ArticleDetails = ({ article, onClose }) => {
                     < CloseButton onClick={onClose} />
                 </footer>
             </article>
-            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
+            {/* <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} /> */}
         </aside>
     );
 };
