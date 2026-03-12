@@ -5,21 +5,14 @@ import styles from './article-details.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../context/User/UserContext';
 import ArticlesPath from '../../../services/ArticlesPath';
-import AuthModal from '../authModal/AuthModal';
-
 
 const ArticleDetails = ({ article, onClose }) => {
     console.log(article);
-    const { isLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
+    const { openAuthModal, user} = useContext(UserContext);
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
-
-
-
-    console.log("mi user is", user);
-    console.log("ESTADO ACTUAL:", { isLogged, user });
     
-    
+    console.log("mi user id es ", user.id , "mi reservedId.id es ",currentArticle.reservedId?.id);
 
     const handleReserve = async() =>{
         if (!user || !localStorage.getItem("token")) {
@@ -93,7 +86,6 @@ const ArticleDetails = ({ article, onClose }) => {
                     < CloseButton onClick={onClose} />
                 </footer>
             </article>
-            {/* <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} /> */}
         </aside>
     );
 };

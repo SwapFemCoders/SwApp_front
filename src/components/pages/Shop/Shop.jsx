@@ -12,10 +12,9 @@ import SidebarFilters from '../../organisms/SidebarFilters/SidebarFilters';
 import ArticlesPath from '../../../services/ArticlesPath';
 
 const ShopContent = () => {
-    const { isModalOpen, closeAuthModal } = useAuth();
+
     const [list, setList] = useState([]);
     const [filters, setFilters] = useState({ searchTerm: '', category: 'ALL' });
-    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
     //setList(MockArticles);
@@ -28,20 +27,17 @@ const ShopContent = () => {
     return (
         <main className={styles.shopContainer}>
             <div className={styles.comicDivider}></div>
-            {/* 2. Título de la página */}
             <Title text= "SHOP"/>
 
-            {/* 3. Lateral Izquierdo */}
+            {/* 3. Lateral Izquierdo
             <aside className={`${styles.sidebar} ${styles.left}`}>
                 <div className={styles.placeholder}>FILTERS / AD</div>
-            </aside>
+            </aside> */}
 
-            {/* 4. Contenido Principal (Nuestra Lista) */}
             <section className={styles.content}>
                 <ArticleList  filters ={filters}/>
             </section>
 
-            {/* 5. Lateral Derecho */}
             <aside className={`${styles.sidebar} ${styles.right}`}>
                 
                 <SidebarFilters 
@@ -50,8 +46,6 @@ const ShopContent = () => {
                     onFilter={handleFilterChange} 
                 />
             </aside>
-           
-            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </main>
     );
 };
