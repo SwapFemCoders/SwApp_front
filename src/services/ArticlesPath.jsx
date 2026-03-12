@@ -33,6 +33,30 @@ const ArticlesPath =() =>{
             throw error;
         }
     }
+
+    const getAllAvailableArticlesByCreatorId = async() =>{
+        try{
+            const response = await api.get(`${url}/user/available`);
+            return response.data;
+        } catch (error) {
+            console.error ("Error to obtains available articles", error);
+            throw error;
+        }
+    }
+
+     const getAllReservedArticles = async() =>{
+        try{
+            const response = await api.get(`${url}/reserved`);
+            return response.data;
+        } catch (error) {
+            console.error ("Error to obtains reserved articles", error);
+            throw error;
+        }
+    }
+
+
+
+
     const reserveArticle = async (articleId) => {
   
     try {
@@ -44,7 +68,10 @@ const ArticlesPath =() =>{
         throw error;
         }
     }
-return{ getAllArticles, getArticleById, createArticle, reserveArticle}
+return{ getAllArticles, getArticleById, 
+    createArticle, reserveArticle,
+getAllAvailableArticlesByCreatorId,
+getAllReservedArticles}
     
 }
 export default ArticlesPath;
