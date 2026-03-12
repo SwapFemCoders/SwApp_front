@@ -10,15 +10,15 @@ import SwapHistory from "../../pages/SwapHistory/SwapHistory";
 const DashboardLayout = () => {
 
   return (
-    <>
-    <div className="styles.layout">
-      <SidebarMenu  />
-    
-    <main className={styles.content}>
-      <Outlet />
-    </main>
-    </div>
-    </>
+    <section>
+      <div className="styles.layout">
+        <SidebarMenu  />
+      
+      <main className={styles.content}>
+        <Outlet />
+      </main>
+      </div>
+    </section>
   );
 };
 
