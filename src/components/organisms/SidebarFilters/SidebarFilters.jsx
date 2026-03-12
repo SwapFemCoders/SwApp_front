@@ -3,6 +3,7 @@ import SearchBar from '../../molecules/SearchBar/SearchBar';
 import styles from './sidebar-filters.module.css';
 
 const SidebarFilters = ({ articles, filters, onFilter }) => {
+  
   // Extraemos las categorías de los artículos que ya tenemos
   
   const dynamicCategories =  ["SHOES",

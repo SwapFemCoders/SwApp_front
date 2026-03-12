@@ -5,32 +5,33 @@ import styles from './article-details.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../context/User/UserContext';
 import ArticlesPath from '../../../services/ArticlesPath';
-import AuthModal from '../authModal/AuthModal';
-
 
 const ArticleDetails = ({ article, onClose }) => {
     console.log(article);
-    const { isLogged, openAuthModal, isModalOpen, closeAuthModal, user} = useContext(UserContext);
+    const { openAuthModal, user} = useContext(UserContext);
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
-
-
-
-    console.log("mi user is", user);
-    console.log("ESTADO ACTUAL:", { isLogged, user });
     
-    
+    console.log("mi user id es ", user.id , "mi reservedId.id es ",currentArticle.reservedId?.id);
 
     const handleReserve = async() =>{
         if (!user || !localStorage.getItem("token")) {
            return openAuthModal();
         }
+        const isCancelling = currentArticle.reservedId?.id === user?.id;
            setLoading(true);
            try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
             setCurrentArticle(updatedArticle);
-            alert("¡Reserve confirmed!");
+            if (isCancelling) {
+            alert("Reservation cancelled successfully");
+        } else {
+            alert("Reserve confirmed!");
+        }
         } catch (error) {
+            if (error.response?.status === 401 || error.response?.status === 403) {
+            return; 
+        }
             alert("Error to reserve: " + (error.response?.data || error.message));
         } finally {
             setLoading(false);
@@ -39,11 +40,9 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonText = "RESERVE";
         let isClickable = true;
         let buttonClass = "reserve"; 
-console.log("ID del que reservó:", currentArticle.reservedId?.id || currentArticle.reservedId);
-console.log("ID de mi usuario logueado:", user?.id);
 
         if (currentArticle.reservedId) {
-        if (currentArticle.reservedId === user?.id) {
+        if (currentArticle.reservedId?.id === user?.id) {
             
             buttonText = "CANCEL RESERVE";
             buttonClass = "default"; 
@@ -87,7 +86,6 @@ console.log("ID de mi usuario logueado:", user?.id);
                     < CloseButton onClick={onClose} />
                 </footer>
             </article>
-            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </aside>
     );
 };

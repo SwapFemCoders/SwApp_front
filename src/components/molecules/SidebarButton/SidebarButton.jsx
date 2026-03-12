@@ -1,5 +1,5 @@
 import styles from "./sidebarButton.module.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 
 const SidebarButton = ({icon, label, to, className})=>{
   const navigate = useNavigate();
