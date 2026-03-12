@@ -6,11 +6,8 @@ const ArticlesPath =() =>{
 
     const createArticle = async (formData) => {
         try{
-            const response = await axios.post(url, {
-                method: "POST",
-                body: formData
-            });
-            return await response.json();
+            const response = await api.post(url, formData);
+            return response.data;
         } catch(error){
             console.error ("Error to create new article", error);
             throw error;
@@ -41,11 +38,11 @@ const ArticlesPath =() =>{
     try {
         const response = await api.put(
         `${url}/${articleId}/reserve`,{}); 
-         return response.data;
-         } catch (error) {
+        return response.data;
+        } catch (error) {
         console.error("Error reserving item", error);
         throw error;
-         }
+        }
     }
 return{ getAllArticles, getArticleById, createArticle, reserveArticle}
     
