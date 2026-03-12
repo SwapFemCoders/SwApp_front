@@ -4,7 +4,7 @@ import Title from '../../atoms/title/Title';
 import AuthModal from '../../molecules/authModal/AuthModal';
 // import { RedBackground } from "../../atoms/RedBackground/RedBackground";
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
-import ArticleList from '../../organisms/ArticleList/ArticleList';
+import ArticleList from "../../organisms/articleList/ArticleList";
 import styles from './shop.module.css';
 import Footer from "../../atoms/Footer/Footer";
 import { useEffect, useState } from 'react';
