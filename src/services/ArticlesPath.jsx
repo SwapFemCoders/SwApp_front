@@ -66,6 +66,18 @@ const ArticlesPath =() =>{
         }
     }
 
+    const updateArticle = async (articleId, userData) => {
+  
+    try {
+        const response = await api.put(
+        `${url}/${articleId}`,userData); 
+        return response.data;
+        } catch (error) {
+        console.error("Error updating item", error);
+        throw error;
+        }
+    }
+
     const deleteArticle = async(articleId) => {
         try{
             const response = await api. delete(`${url}/${articleId}`);
@@ -79,7 +91,8 @@ return{ getAllArticles, getArticleById,
     createArticle, reserveArticle,
 getAllAvailableArticlesByCreatorId,
 getAllReservedArticles,
-deleteArticle}
+deleteArticle,
+updateArticle}
     
 }
 export default ArticlesPath;

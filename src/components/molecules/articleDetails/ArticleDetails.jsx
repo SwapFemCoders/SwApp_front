@@ -18,11 +18,12 @@ const ArticleDetails = ({ article, onClose }) => {
     const isMySwaps = location.pathname === '/myswaps';
     const isOwner = user?.id === article.creatorId.id;
 
+    
     const handleReserve = async() =>{
         if (!user || !localStorage.getItem("token")) {
         return openAuthModal();
         }
-        const isCancelling = currentArticle.reservedId?.id === user?.id;
+        const isCancelling = currentArticle.reservedId === user?.id;
            setLoading(true);
            try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
@@ -46,7 +47,7 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonClass = "reserve"; 
 
         if (currentArticle.reservedId) {
-        if (currentArticle.reservedId?.id === user?.id) {
+        if (currentArticle.reservedId === user?.id) {
             
             buttonText = "CANCEL RESERVE";
             buttonClass = "default"; 
@@ -71,7 +72,7 @@ const ArticleDetails = ({ article, onClose }) => {
     };
 
     const handleEdit = () => {
-        navigate(`/edit-article/${article.id}`);
+        navigate(`/Profile/edit/${article.id}`);
     };   
     const fullImageSrc = `data:image/png;base64,${article.picture}`;
     return (
