@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-.content{
-=======
 .shopContainer {
   display: grid;
-  grid-template-columns: 280px 1fr 200px; /* Ancho fijo para el lateral izquierdo */
+  grid-template-columns: 1fr 280px; /* Ancho fijo para el lateral izquierdo */
   gap: 20px;
   padding: 20px;
   min-height: 100vh;
@@ -33,6 +30,6 @@
 }
 
 .content {
->>>>>>> 0e7c4bf10ced19e02c444141667e84aed36d35b8
     padding: 10px;
+    grid-column: 1/-2;
 }
