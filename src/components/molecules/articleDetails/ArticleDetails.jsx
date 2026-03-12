@@ -11,12 +11,10 @@ const ArticleDetails = ({ article, onClose }) => {
     const { openAuthModal, user} = useContext(UserContext);
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
-    
-    console.log("mi user id es ", user.id , "mi reservedId.id es ",currentArticle.reservedId?.id);
 
     const handleReserve = async() =>{
         if (!user || !localStorage.getItem("token")) {
-           return openAuthModal();
+        return openAuthModal();
         }
         const isCancelling = currentArticle.reservedId?.id === user?.id;
            setLoading(true);
@@ -82,7 +80,7 @@ const ArticleDetails = ({ article, onClose }) => {
                     <ActionButton text= {loading ? "Loading..." : buttonText} 
                                     className = {buttonClass} onClick = {isClickable ? handleReserve : null} 
                                     disabled ={!isClickable || loading}/>
-                     <FavoriteButton /> 
+                    <FavoriteButton /> 
                     < CloseButton onClick={onClose} />
                 </footer>
             </article>
