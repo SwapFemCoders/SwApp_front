@@ -6,11 +6,14 @@ import {DataProtection} from "../../atoms/DataProtection/DataProtection.jsx"
 import ActionButton from '../../atoms/actionButton/ActionButton.jsx';
 import Logo from '../../../assets/images/Logo.png';
 import { useNavigate } from 'react-router';
+import Popup from '../../molecules/PopUp/PopUp.jsx';
 
 
 export const SignUpForm = () => {
 
     const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
 
     const [form, setForm] = useState({
         name: "",
@@ -27,7 +30,7 @@ export const SignUpForm = () => {
             ...form,
             [event.target.name]: event.target.value
         })
-        if (errors[name]) {
+        if (errors[event.target.name]) {
         setErrors({
             ...errors,
             [event.target.name]: ""
@@ -69,15 +72,24 @@ export const SignUpForm = () => {
         const response = await UserPath().createUser(data);
         
         console.log("User created:", response);
-        alert("User successfully created!");
+        setPopupMessage("User successfully created!");
+        setShowPopup(true);
         handleCancel();
-        navigate("/LogIn");
 
     } catch (error) {
         console.error("Signup failed:", error);
-        alert("Error creating user");
+        setPopupMessage("Error creating user");
+        setShowPopup(true);
     }
     };
+
+    const closePopup = () => {
+    setShowPopup(false);
+
+    if (popupMessage === "User successfully created!") {
+        navigate("/LogIn");
+    }
+};
 
     const handleCancel = () => {
     setForm({
@@ -140,6 +152,9 @@ export const SignUpForm = () => {
             <div className={style.title}>
                 <TitleBox text="SIGN UP"/>
             </div>
+            {showPopup && (
+            <Popup title="Thank you!" onClose={closePopup}>{popupMessage}</Popup>
+            )}
             <form className={style.form} onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name" className={style.label}>Name</label>
@@ -199,7 +214,6 @@ export const SignUpForm = () => {
     
     )
 
-    console.log(form);
     };
 
 

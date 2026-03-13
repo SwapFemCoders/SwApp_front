@@ -4,10 +4,13 @@ import styles from "./articleForm.module.css";
 import Title from "../../atoms/title/Title";
 import ActionButton from "../../atoms/actionButton/ActionButton";
 import ArticlesPath from '../../../services/ArticlesPath';
+import Popup from '../../molecules/PopUp/PopUp.jsx';
 import { useNavigate } from "react-router";
 
 const ArticleForm = ({articleId, isEdit = false}) => {
   const { createArticle } = useContext(ArticlesContext);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -68,23 +71,31 @@ const ArticleForm = ({articleId, isEdit = false}) => {
       // };
       formData.append("article", new Blob([JSON.stringify(article)], { type: "application/json" })
         );
-      if (form.picture && typeof form.picture !== 'string') {
+        if (form.picture && typeof form.picture !== 'string') {
         formData.append("file", form.picture);
       }
+
       if (isEdit) {
         await ArticlesPath().updateArticle(articleId, formData);
-        alert("Updated!");
+        setPopupMessage("Updated!");
+        setShowPopup(true);
         navigate(-1);
       } else {
         await ArticlesPath().createArticle(formData);
-        alert("Article created successfully");
+        setPopupMessage("Article created successfully");
+        setShowPopup(true);
       }
-       handleCancel();
-    } catch (error) {
-    console.error("New Article failed:", error);
-      alert("Error unexpected");
-    }
-  };
+      handleCancel();
+      }
+      catch (error) {
+      console.error("New Article failed:", error);
+      if (isEdit){
+      setPopupMessage("Error updating article");
+      setShowPopup(true);
+      }
+      else {setPopupMessage("Error creating article");
+      setShowPopup(true);}
+  };}
 
   //     console.log("Article created successfully", response);
   //       alert("Article created successfully");
@@ -97,6 +108,14 @@ const ArticleForm = ({articleId, isEdit = false}) => {
   //   }
   // };
   
+  const closePopup = () => {
+    setShowPopup(false);
+
+    if (popupMessage === "User successfully created!") {
+        navigate("/LogIn");
+    }
+};
+
   const handleCancel = () => {
     setForm({
       title: "",
@@ -135,6 +154,9 @@ const ArticleForm = ({articleId, isEdit = false}) => {
     <>
       <section className={styles.content}>
         <form className={styles.form} onSubmit={handleSubmit}>
+          {showPopup && (
+            <Popup title="Well done!" onClose={closePopup}>{popupMessage}</Popup>
+            )}
           <Title text={isEdit ? "Edit Article" : "New Article"} />
           <div>
             <label htmlFor="name" className={styles.label}>
@@ -219,7 +241,7 @@ const ArticleForm = ({articleId, isEdit = false}) => {
               <input
                 type="file"
                 name="picture"
-                id="picture"
+                id="picture" 
                 hidden
                 autoComplete="off"
                 onChange={handleFileChange}

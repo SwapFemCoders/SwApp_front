@@ -30,6 +30,7 @@ export const LogInForm = () => {
     navigate("/Shop");
     } catch (error) {
     console.error("Login failed:", error);
+    
     }
     };
 
