@@ -2,7 +2,9 @@
   <img src="../SwApp_front/src/assets/images/Logo.png" width="200";">
 </div>
 
-Swapp is a web application that allows users to post clothing items they no longer wear and find others to exchange with members of the community. The goal is to promote sustainable consumption, reuse clothing, and facilitate exchanges between users.
+Swapp is a web application that allows users to post clothing ♻️ items they no longer wear 👕 and find others to exchange with members of the community. The goal is to promote sustainable consumption🌱, reuse clothing, and facilitate exchanges between users 👥.
+
+
 
 ## 🌍 What can you do with SWAP?
 
@@ -12,6 +14,7 @@ Swapp is a web application that allows users to post clothing items they no long
 - Browse available items.
 - Filter items by category and date.
 - View details of each item.
+- 
 ---
 
 ## 📐 [UserFlow](https://drive.google.com/file/d/1_K5Yru43z85icRXUZEprccl07NlS_frG/view?usp=sharing)
@@ -33,7 +36,7 @@ Swapp is a web application that allows users to post clothing items they no long
 |------------|---------------------|
 | Technology | Java 21, Sprint Boot 3, Visual Studio Code |
 | Database | PostgreSQL, Postman |
-| Test| JUnit, Vitest |
+
 
 ## 🏛 Architecture
 
@@ -153,12 +156,6 @@ The application will open at:
 | react-icons | Icons |
 
 
-## 🧪 Testing
-
-```
-vitest
-```
-
 ## 👥 **Team**
 
 **Cristina Viejó**<br>
@@ -179,5 +176,9 @@ GitHub: [https://github.com/sukisu91-alt](hhttps://github.com/sukisu91-alt)<br>
 
 ## 📄 License
 
-This project is developed for educational purposes.
+This FullStack project is developed for educational purposes.
+
+---
+
+
 
