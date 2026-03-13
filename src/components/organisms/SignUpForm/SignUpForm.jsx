@@ -165,7 +165,6 @@ export const SignUpForm = () => {
                     <input className={style.input} type="text" name='lastName' id="lastName" autoComplete='off' value={form.lastName} onChange={handleChange} required/>
                 </div>
                 <div>
-                    {/* VALIDATION OF THE USERNAME - NEED TO BE UNIQUE - CHECK THE API */}
                     <label htmlFor="userName" className={style.label}>UserName</label>
                     <input className={style.input} type="text" name='userName' id="userName" autoComplete='off' value={form.userName} onChange={handleChange} required/>
                     

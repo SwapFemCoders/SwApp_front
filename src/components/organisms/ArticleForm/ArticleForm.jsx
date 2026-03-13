@@ -62,13 +62,6 @@ const ArticleForm = ({articleId, isEdit = false}) => {
       const article = { ...form };
       delete article.picture;
 
-      // const article={
-      //   title: form.title,
-      //   description: form.description,
-      //   date: form.date,
-      //   state: form.state,
-      //   category: form.category,
-      // };
       formData.append("article", new Blob([JSON.stringify(article)], { type: "application/json" })
         );
         if (form.picture && typeof form.picture !== 'string') {
@@ -97,17 +90,6 @@ const ArticleForm = ({articleId, isEdit = false}) => {
       setShowPopup(true);}
   };}
 
-  //     console.log("Article created successfully", response);
-  //       alert("Article created successfully");
-  //       handleCancel();
-  //     }
-
-  //     catch (error) {
-      // console.error("New Article failed:", error);
-      // alert("Error creating article");
-  //   }
-  // };
-  
   const closePopup = () => {
     setShowPopup(false);
 

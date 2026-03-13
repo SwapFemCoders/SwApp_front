@@ -1,13 +1,10 @@
 import SidebarButton from "../../molecules/SidebarButton/SidebarButton";
-import Avatar from "../../atoms/AvatarUser/AvatarUser";
+import Avatar from "../../atoms/avatarUser/AvatarUser";
 import styles from "./sidebar-menu.module.css";
-import Title from "../../atoms/title/Title"
 import { FcSynchronize } from "react-icons/fc";
 import { FcNews } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
-//import { FcLike } from "react-icons/fc";
 import { FcSettings } from "react-icons/fc";
-import { FcShop } from "react-icons/fc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgClose } from "react-icons/cg";
 import { useState } from "react";
@@ -27,8 +24,6 @@ const SidebarMenu = () => {
                     {isOpen ? <CgClose /> : <RxHamburgerMenu />}
                 </button>
                 <Avatar />
-                
-                {/* <p className={styles.welcome}>Tienes X puntos</p> */}
             </div>
             <div className={`${styles.containerMenu} ${isOpen ? styles.open : ''}`}>
                 

@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-    const [isLogged, setIsLogged] = useState(false); //aqui hay que confirmar login
+    const [isLogged, setIsLogged] = useState(false);
     const[isModalOpen, setIsModalOpen] = useState (false);
 
     const openAuthModal =() => setIsModalOpen(true);

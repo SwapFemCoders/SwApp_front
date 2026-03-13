@@ -44,7 +44,7 @@ const ArticlesPath =() =>{
         }
     }
 
-     const getAllReservedArticles = async() =>{
+    const getAllReservedArticles = async() =>{
         try{
             const response = await api.get(`${url}/reserved`);
             return response.data;
@@ -55,7 +55,7 @@ const ArticlesPath =() =>{
     }
 
     const reserveArticle = async (articleId) => {
-  
+
     try {
         const response = await api.put(
         `${url}/${articleId}/reserve`,{}); 

@@ -53,7 +53,7 @@ export const router = createBrowserRouter ([
                         Component: SwapHistory
                     },
                     {
-                         path: "edit/:id",
+                        path: "edit/:id",
                         Component: EditArticle
                     }
                 ]

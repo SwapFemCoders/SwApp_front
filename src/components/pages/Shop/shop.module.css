@@ -1,13 +1,13 @@
 .shopContainer {
-  display: grid;
-  grid-template-columns: 1fr 280px; /* Ancho fijo para el lateral izquierdo */
-  gap: 20px;
-  padding: 20px;
-  min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 280px; 
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 .navbar {
-    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    grid-column: 1 / -1; 
     height: 60px;
 }
 
@@ -16,15 +16,7 @@
     text-align: center;
 }
 
-/* .header h1 {
-    font-size: 4rem;
-    margin: 0;
-    -webkit-text-stroke: 2px black; /* Borde negro para el texto */
-    /* color: white;
-} */ 
-
 .sidebar {
-    /* Espacio para tus laterales */
     display: flex;
     justify-content: center;
 }
