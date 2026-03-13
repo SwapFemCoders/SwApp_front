@@ -22,3 +22,5 @@
 .reserve { background-color: #5fdbf3; } 
 .reserved{ background-color: #6799a3; }
 .default { background-color: #ce2e2e; } 
+.delete { background-color: #ce2e2e; }
+.edit { background-color: #6799a3; }

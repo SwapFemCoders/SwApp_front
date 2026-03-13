@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./PopUp.module.css";
 
-const Popup = ({children, onClose }) => {
+const Popup = ({ title, children, onClose }) => {
 
     const [showPopup, setShowPopup] = useState(false);
 
@@ -9,6 +9,7 @@ const Popup = ({children, onClose }) => {
     <div className={styles.overlay}>
         <div className={styles.popup}>
             <div className={styles.header}>
+                <h2>{title}</h2>
                 <button className={styles.closeButton} onClick={onClose}>
                     ×
                 </button>

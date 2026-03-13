@@ -2,7 +2,8 @@ import ActionButton from '../../atoms/actionButton/ActionButton';
 import FavoriteButton from '../../atoms/favoriteButton/FavoriteButton';
 import CloseButton from '../../atoms/closeButton/CloseButton';
 import styles from './article-details.module.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState} from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { UserContext } from '../../../context/User/UserContext';
 import ArticlesPath from '../../../services/ArticlesPath';
 
@@ -12,11 +13,17 @@ const ArticleDetails = ({ article, onClose }) => {
     const [currentArticle, setCurrentArticle] = useState(article);
     const [loading, setLoading] = useState(false);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+    const isMySwaps = location.pathname === '/myswaps';
+    const isOwner = user?.id === article.creatorId.id;
+
+    
     const handleReserve = async() =>{
         if (!user || !localStorage.getItem("token")) {
         return openAuthModal();
         }
-        const isCancelling = currentArticle.reservedId?.id === user?.id;
+        const isCancelling = currentArticle.reservedId === user?.id;
            setLoading(true);
            try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
@@ -40,7 +47,7 @@ const ArticleDetails = ({ article, onClose }) => {
         let buttonClass = "reserve"; 
 
         if (currentArticle.reservedId) {
-        if (currentArticle.reservedId?.id === user?.id) {
+        if (currentArticle.reservedId === user?.id) {
             
             buttonText = "CANCEL RESERVE";
             buttonClass = "default"; 
@@ -51,7 +58,22 @@ const ArticleDetails = ({ article, onClose }) => {
             buttonClass = "reserved";
         }
     }
-        
+     const handleDelete = async () => {
+        if (window.confirm("Are you sure you want to delete this article?")) {
+            try {
+                await ArticlesPath().deleteArticle(article.id);
+                alert("Article deleted");
+                onClose();
+                window.location.reload(); 
+            } catch (error) {
+                alert("Error deleting article");
+            }
+        }
+    };
+
+    const handleEdit = () => {
+        navigate(`/Profile/edit/${article.id}`);
+    };   
     const fullImageSrc = `data:image/png;base64,${article.picture}`;
     return (
         <aside className={styles.modal_overlay} onClick={onClose}>
@@ -77,9 +99,23 @@ const ArticleDetails = ({ article, onClose }) => {
                 </section>
 
                 <footer className={styles.modal_actions}>
+                    {isOwner ? (
+                    <>
+                        <ActionButton 
+                            text="EDIT" 
+                            className="edit" 
+                            onClick={handleEdit} 
+                        />
+                        <ActionButton 
+                            text="DELETE" 
+                            className="delete" 
+                            onClick={handleDelete} 
+                        />
+                        </>
+                    ) : (
                     <ActionButton text= {loading ? "Loading..." : buttonText} 
                                     className = {buttonClass} onClick = {isClickable ? handleReserve : null} 
-                                    disabled ={!isClickable || loading}/>
+                                    disabled ={!isClickable || loading}/>)}
                     <FavoriteButton /> 
                     < CloseButton onClick={onClose} />
                 </footer>

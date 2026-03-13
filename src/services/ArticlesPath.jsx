@@ -33,6 +33,27 @@ const ArticlesPath =() =>{
             throw error;
         }
     }
+
+    const getAllAvailableArticlesByCreatorId = async() =>{
+        try{
+            const response = await api.get(`${url}/user/available`);
+            return response.data;
+        } catch (error) {
+            console.error ("Error to obtains available articles", error);
+            throw error;
+        }
+    }
+
+     const getAllReservedArticles = async() =>{
+        try{
+            const response = await api.get(`${url}/reserved`);
+            return response.data;
+        } catch (error) {
+            console.error ("Error to obtains reserved articles", error);
+            throw error;
+        }
+    }
+
     const reserveArticle = async (articleId) => {
   
     try {
@@ -44,7 +65,34 @@ const ArticlesPath =() =>{
         throw error;
         }
     }
-return{ getAllArticles, getArticleById, createArticle, reserveArticle}
+
+    const updateArticle = async (articleId, userData) => {
+  
+    try {
+        const response = await api.put(
+        `${url}/${articleId}`,userData); 
+        return response.data;
+        } catch (error) {
+        console.error("Error updating item", error);
+        throw error;
+        }
+    }
+
+    const deleteArticle = async(articleId) => {
+        try{
+            const response = await api. delete(`${url}/${articleId}`);
+            return response.data;
+        } catch(error){
+            console.error ("Error deleting article", error);
+            throw error;
+        }
+    }
+return{ getAllArticles, getArticleById, 
+    createArticle, reserveArticle,
+getAllAvailableArticlesByCreatorId,
+getAllReservedArticles,
+deleteArticle,
+updateArticle}
     
 }
 export default ArticlesPath;

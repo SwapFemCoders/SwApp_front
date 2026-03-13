@@ -48,7 +48,7 @@ const ShopContent = () => {
             <Title text= "SHOP"/>
 
             <section className={styles.content}>
-                {loading ? <p>Cargando...</p> : <ArticleList  articles={filteredArticles}/>}
+                {loading ? <p>Loading...</p> : <ArticleList  articles={filteredArticles}/>}
             </section>
 
             <aside className={`${styles.sidebar} ${styles.right}`}>

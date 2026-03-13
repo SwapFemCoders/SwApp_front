@@ -6,7 +6,7 @@ const CreateArticle = () => {
 
   return (
     <>
-      <SquareBackground color="#f7d51d" content={<ArticleForm/>}/> 
+      <SquareBackground color="#f7d51d" content={<ArticleForm />}/> 
     </>
   );
 

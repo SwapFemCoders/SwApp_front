@@ -20,7 +20,8 @@
   padding: 20px;
   box-shadow: 0 0 0 6px #ffeb3b;
   font-family:'Inter', sans-serif;
-  size: 2rem;
+  size: 5rem;
+  font-weight: 600;
 }
 
 .header {

@@ -1,15 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ArticlesContext from "../../../context/ArticlesContext";
 import styles from "./articleForm.module.css";
 import Title from "../../atoms/title/Title";
 import ActionButton from "../../atoms/actionButton/ActionButton";
 import ArticlesPath from '../../../services/ArticlesPath';
 import Popup from '../../molecules/PopUp/PopUp.jsx';
+import { useNavigate } from "react-router";
 
-const ArticleForm = () => {
+const ArticleForm = ({articleId, isEdit = false}) => {
   const { createArticle } = useContext(ArticlesContext);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: "",
@@ -19,8 +21,30 @@ const ArticleForm = () => {
     category: "",
     picture: ""
   });
-
   const [picture, setPicture] = useState(null);
+  const[fileName,setFileName]= useState(null);
+
+  useEffect(() => {
+    if (isEdit && articleId) {
+      const updatedArticle = async () => {
+        try {
+          const data = await ArticlesPath().getArticleById(articleId);
+          setForm({
+            title: data.title || "",
+            description: data.description || "",
+            date: data.date || "",
+            state: data.state || "",
+            category: data.category || "",
+            picture: ""
+          });
+          setFileName("Current image saved");
+        } catch (error) {
+          console.error("Error loading article", error);
+        }
+      };
+      updatedArticle();
+    }
+  }, [articleId, isEdit]);
 
   const handleChange = (e) => {
     setForm({
@@ -29,36 +53,60 @@ const ArticleForm = () => {
     });
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
+      const article = { ...form };
+      delete article.picture;
 
-      const article={
-        title: form.title,
-        description: form.description,
-        date: form.date,
-        state: form.state,
-        category: form.category,
-      };
+      // const article={
+      //   title: form.title,
+      //   description: form.description,
+      //   date: form.date,
+      //   state: form.state,
+      //   category: form.category,
+      // };
       formData.append("article", new Blob([JSON.stringify(article)], { type: "application/json" })
         );
-      formData.append("file", form.picture);
-
-      const response = await ArticlesPath().createArticle(formData);
-
-      console.log("Article created successfully", response);
-        setPopupMessage("Article created successfully");
-        setShowPopup(true);
-        handleCancel();
+        if (form.picture && typeof form.picture !== 'string') {
+        formData.append("file", form.picture);
       }
 
+      if (isEdit) {
+        await ArticlesPath().updateArticle(articleId, formData);
+        setPopupMessage("Updated!");
+        setShowPopup(true);
+        navigate(-1);
+      } else {
+        await ArticlesPath().createArticle(formData);
+        setPopupMessage("Article created successfully");
+        setShowPopup(true);
+      }
+      handleCancel();
+      }
       catch (error) {
       console.error("New Article failed:", error);
-      setPopupMessage("Error creating article");
+      if (isEdit){
+      setPopupMessage("Error updating article");
       setShowPopup(true);
-    }
-  };
+      }
+      else {setPopupMessage("Error creating article");
+      setShowPopup(true);}
+  };}
+
+  //     console.log("Article created successfully", response);
+  //       alert("Article created successfully");
+  //       handleCancel();
+  //     }
+
+  //     catch (error) {
+      // console.error("New Article failed:", error);
+      // alert("Error creating article");
+  //   }
+  // };
   
   const closePopup = () => {
     setShowPopup(false);
@@ -77,17 +125,16 @@ const ArticleForm = () => {
       category: "",
       picture: ""
     });
-    setfileName("");
+    setFileName("");
     setPicture(null);
     
   };
-  const [fileName, setfileName] = useState(" ");
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
 
         if (file) {
-            setfileName(file.name);
+            setFileName(file.name);
             setForm({
         ...form,
         picture: file
@@ -101,16 +148,16 @@ const ArticleForm = () => {
     form.date !== "" &&
     form.state !== "" &&
     form.category !== "" &&
-    !!form.picture;
+    (isEdit || !!form.picture);
 
   return (
     <>
       <section className={styles.content}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <Title text="New Article" />
           {showPopup && (
             <Popup title="Well done!" onClose={closePopup}>{popupMessage}</Popup>
             )}
+          <Title text={isEdit ? "Edit Article" : "New Article"} />
           <div>
             <label htmlFor="name" className={styles.label}>
               Article
@@ -181,7 +228,7 @@ const ArticleForm = () => {
               <option value="">Select Category</option>
               <option value="SHOES">Shoes</option>
               <option value="T_SHIRTS">T-shirts</option>
-              <option value="JACKET">Jacket</option>
+              <option value="JACKETS">Jacket</option>
               <option value="PANTS">Pants</option>
             </select>
           </div>
@@ -211,8 +258,8 @@ const ArticleForm = () => {
             <ActionButton
               className="login"
               type="submit"
-              disabled={!validForm}
-              text={"CREATE"}
+              disabled={isEdit ? !form.title : !validForm}
+              text={isEdit ? "UPDATE" : "CREATE"}
             />
             <ActionButton
               className="login"
