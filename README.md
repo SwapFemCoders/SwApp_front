@@ -14,7 +14,7 @@ Swapp is a web application that allows users to post clothing ♻️ items they 
 - Browse available items.
 - Filter items by category and date.
 - View details of each item.
-- 
+- Reserve, update and delete an item.
 ---
 
 ## 📐 [UserFlow](https://drive.google.com/file/d/1_K5Yru43z85icRXUZEprccl07NlS_frG/view?usp=sharing)
