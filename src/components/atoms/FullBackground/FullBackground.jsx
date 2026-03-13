@@ -1,4 +1,5 @@
 import style from "./fullBackground.module.css"
+import Title from "../title/Title"
 
 export const FullBackground = ({content}) => {
     return (

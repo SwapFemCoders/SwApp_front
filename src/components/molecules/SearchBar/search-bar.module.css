@@ -1,0 +1,43 @@
+.searchWrapper {
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.sidebarTitle {
+  font-family: 'Bangers', 'Arial Black', sans-serif; 
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: #000;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 15px;
+  border: 3px solid #000;
+  border-radius: 0; 
+  background-color: #fff;
+  font-weight: bold;
+  box-shadow: 5px 5px 0px #000; 
+  outline: none;
+  transition: transform 0.1s;
+}
+
+.searchInput:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #000;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 15px;
+  font-size: 1.2rem;
+  pointer-events: none;
+}

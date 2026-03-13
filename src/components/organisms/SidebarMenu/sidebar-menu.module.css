@@ -35,7 +35,7 @@
   box-shadow: 5px 3px 3px #000;
 }
 
-.magenta::before{
+.cyan::before{
   content: "";
   position: absolute;
   top: 0;
@@ -47,10 +47,11 @@
   box-shadow: 0px 3px 0px;
 }
 
-.magenta{
+.cyan{
   background:#4bc0d9;
   border: 3px solid #000;
   box-shadow: 5px 3px 3px #000;
+  
 }
 
 .welcome{
@@ -75,13 +76,17 @@
   margin-left: 25px;
 }
 
-/*-----------CSS MOBILE-----------*/
+.navLink {
+  display: block; 
+  width: 100%;
+  text-decoration: none; 
+}
 
- .hamburger{
+
+.hamburger{
   display: none;
- }
+}
 
-/*----Responsive-----*/
 @media (max-width: 768px){
   .sidebar{
     width: 100%;
@@ -113,7 +118,6 @@
 
   .containerMenu{
     display: none;
-    /*position: absolute;*/
     top: 100%;
     left: 0;
     width: 100%;

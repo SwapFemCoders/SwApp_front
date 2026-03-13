@@ -1,11 +1,13 @@
 import axios from "axios";
+import api from "./api";
+
 
 const UserPath =() =>{
-    const url = "http://localhost:8080/api/v1/users";
+    const url = "/api/v1/users";
 
     const getUserById = async(id) =>{
         try{
-            const response = await axios.get(`${url}/${id}`);
+            const response = await api.get(`${url}/${id}`);
             return response.data;
         } catch (error) {
             console.error ("Error to obtains user details", error);
@@ -15,7 +17,7 @@ const UserPath =() =>{
     
     const deleteUser = async (id) => {
         try {
-            const response = await axios.delete(`/api/v1/users/${id}`);
+            const response = await api.delete(`/api/v1/users/${id}`);
             return response.data;
         } catch (error) {
             console.error("Error deleting user", error);
@@ -25,7 +27,7 @@ const UserPath =() =>{
 
     const createUser = async(userData) => {
         try{
-            const response = await axios.post(url, userData);
+            const response = await api.post(url, userData);
             return response.data;
         }catch (error) {
             console.error ("Error creating user", error);
@@ -35,7 +37,7 @@ const UserPath =() =>{
 
     const updateUser = async (id, userData) => {
         try {
-            const response = await axios.put(`/api/v1/users/${id}`, userData);
+            const response = await api.put(`/api/v1/users/${id}`, userData);
         return response.data;
     } catch (error) {
         console.error("Error updating user", error);
@@ -43,7 +45,17 @@ const UserPath =() =>{
     }
 };
 
-return{ getUserById, createUser, updateUser, deleteUser}
+    const login = async (credentials) => {
+        try {
+        const response = await axios.post("http://localhost:8080/login", credentials);
+        return response;
+        } catch (error) {
+        console.error("Login error", error);
+        throw error;
+        }
+    };
+
+return{ getUserById, createUser, updateUser, deleteUser, login}
 
 }
 

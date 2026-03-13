@@ -1,5 +1,13 @@
+.shopContainer {
+    display: grid;
+    grid-template-columns: 1fr 280px; 
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
 .navbar {
-    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    grid-column: 1 / -1; 
     height: 60px;
 }
 
@@ -8,39 +16,12 @@
     text-align: center;
 }
 
-/* .header h1 {
-    font-size: 4rem;
-    margin: 0;
-    -webkit-text-stroke: 2px black; /* Borde negro para el texto */
-    /* color: white;
-} */ 
-
 .sidebar {
-    /* Espacio para tus laterales */
     display: flex;
     justify-content: center;
 }
 
 .content {
     padding: 10px;
-}
-
-/* Estilo para los divs vacíos (placeholders) */
-.placeholder {
-    border: 3px dashed rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.1);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-/* Responsivo: En móviles los laterales desaparecen o van abajo */
-@media (max-width: 900px) {
-    .sidebar {
-        display: none;
-    }
+    grid-column: 1/-2;
 }

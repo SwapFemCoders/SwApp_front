@@ -7,9 +7,6 @@ import UserProvider from '../context/User/UserProvider.jsx';
 
 export function Layout() {
 
-    const [loggedIn, setLoggedIn] = useState(
-    !!localStorage.getItem("token")
-);
 return (
     <>
         <UserProvider>

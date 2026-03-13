@@ -1,7 +1,5 @@
-import PageTemplate from "../../templates/PageTemplate/PageTemplate";
 import Mascot from "../../atoms/Mascot/Mascot";
 import style from "./LandingPage.module.css";
-import RepeatingSection from "../../templates/RepeatingSection/RepeatingSection";
 import { SecondSectionLanding } from "../../organisms/SecondSectionLanding/SecondSectionLanding";
 import Footer from "../../atoms/Footer/Footer";
 import { useContext } from "react";

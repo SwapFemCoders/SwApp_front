@@ -1,0 +1,42 @@
+.categoryNav {
+  padding: 0 1rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoryBtn {
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 3px solid #000;
+  cursor: pointer;
+  background-color: #5CE1E6;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.2s ease;
+}
+
+.categoryBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.active {
+  background-color: #FFDE59 !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.list li:nth-child(2) button { border-left: 10px solid #FF66C4; } /* Rosa */
+.list li:nth-child(3) button { border-left: 10px solid #FFDE59; } /* Amarillo */
+.list li:nth-child(4) button { border-left: 10px solid #FF66C4; } /* Rosa */
+.list li:nth-child(5) button { border-left: 10px solid #FFDE59; } /* Amarillo */
+.list li:nth-child(6) button { border-left: 10px solid #FF66C4; } /* Rosa */
+.list li:nth-child(7) button { border-left: 10px solid #FFDE59; } /* Amarillo */
