@@ -2,7 +2,7 @@
 import { AuthProvider} from '../../../context/AuthContext';
 import Title from '../../atoms/title/Title';
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
-import ArticleList from '../../organisms/ArticleList/ArticleList';
+import ArticleList from "../../organisms/articleList/ArticleList";
 import styles from './shop.module.css';
 import Footer from "../../atoms/Footer/Footer";
 import { useEffect, useState } from 'react';
