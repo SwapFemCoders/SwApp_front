@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from './article-list.module.css';
 import ArticlesPath from "../../../services/ArticlesPath";
-import MockArticles from "../../../assets/Mocks/MockArticles";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 import ArticleDetails from "../../molecules/articleDetails/ArticleDetails";
 

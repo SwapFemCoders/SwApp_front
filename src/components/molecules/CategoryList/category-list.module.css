@@ -23,13 +23,11 @@
   transition: all 0.2s ease;
 }
 
-/* Colores alternos al pasar el ratón o estar activo */
 .categoryBtn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px #000;
 }
 
-/* El botón activo se vuelve amarillo como en tu diseño */
 .active {
   background-color: #FFDE59 !important;
   transform: translate(-2px, -2px);

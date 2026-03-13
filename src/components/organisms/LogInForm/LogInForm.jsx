@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import style from "./LogInForm.module.css"
 import TitleBox from '../../atoms/titleBox/TitleBox';
 import ActionButton from '../../atoms/actionButton/ActionButton';

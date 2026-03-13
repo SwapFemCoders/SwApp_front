@@ -7,13 +7,13 @@ import { UserContext } from '../../../context/User/UserContext';
 const FavoriteButton = ({ articleId }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
-   const { openAuthModal, user} = useContext(UserContext);
+    const { openAuthModal, user} = useContext(UserContext);
 
     const handleFavClick = (e) => {
         e.stopPropagation(); 
 
         if (!user || !localStorage.getItem("token")) {
-           return openAuthModal();
+        return openAuthModal();
         }
         try{
             setIsFavorite(!isFavorite);

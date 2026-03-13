@@ -1,8 +1,6 @@
 
-import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import { AuthProvider} from '../../../context/AuthContext';
 import Title from '../../atoms/title/Title';
-import AuthModal from '../../molecules/authModal/AuthModal';
-// import { RedBackground } from "../../atoms/RedBackground/RedBackground";
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
 import ArticleList from '../../organisms/ArticleList/ArticleList';
 import styles from './shop.module.css';
@@ -39,7 +37,7 @@ const ShopContent = () => {
         setFilteredArticles(result);
     }, [filters, list]);
 
-   const handleFilterChange = (newFilters) => {
+const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
     };
     return (
@@ -63,9 +61,9 @@ const ShopContent = () => {
     );
 };
 
- export default function Shop() {
+export default function Shop() {
     return (
-         <>
+        <>
         <FullBackground content={
             <AuthProvider >
                 <ShopContent />

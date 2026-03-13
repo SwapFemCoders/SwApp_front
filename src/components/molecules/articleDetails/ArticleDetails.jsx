@@ -2,7 +2,7 @@ import ActionButton from '../../atoms/actionButton/ActionButton';
 import FavoriteButton from '../../atoms/favoriteButton/FavoriteButton';
 import CloseButton from '../../atoms/closeButton/CloseButton';
 import styles from './article-details.module.css';
-import { useContext, useEffect, useState} from 'react';
+import { useContext, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { UserContext } from '../../../context/User/UserContext';
 import ArticlesPath from '../../../services/ArticlesPath';
@@ -24,8 +24,8 @@ const ArticleDetails = ({ article, onClose }) => {
         return openAuthModal();
         }
         const isCancelling = currentArticle.reservedId === user?.id;
-           setLoading(true);
-           try{
+        setLoading(true);
+        try{
             const updatedArticle = await ArticlesPath().reserveArticle(currentArticle.id);
             setCurrentArticle(updatedArticle);
             if (isCancelling) {
@@ -58,7 +58,7 @@ const ArticleDetails = ({ article, onClose }) => {
             buttonClass = "reserved";
         }
     }
-     const handleDelete = async () => {
+    const handleDelete = async () => {
         if (window.confirm("Are you sure you want to delete this article?")) {
             try {
                 await ArticlesPath().deleteArticle(article.id);

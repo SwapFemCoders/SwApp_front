@@ -23,7 +23,6 @@ const SidebarFilters = ({ articles, filters, onFilter }) => {
         onSelect={updateFilters} 
       />
 
-      {/* Aquí podrías meter la molécula de TopUsers más tarde */}
       <section className={styles.adSpace}>
         <p>AD / INFO</p>
       </section>
