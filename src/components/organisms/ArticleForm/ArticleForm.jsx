@@ -4,9 +4,12 @@ import styles from "./articleForm.module.css";
 import Title from "../../atoms/title/Title";
 import ActionButton from "../../atoms/actionButton/ActionButton";
 import ArticlesPath from '../../../services/ArticlesPath';
+import Popup from '../../molecules/PopUp/PopUp.jsx';
 
 const ArticleForm = () => {
   const { createArticle } = useContext(ArticlesContext);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   const [form, setForm] = useState({
     title: "",
@@ -45,16 +48,26 @@ const ArticleForm = () => {
       const response = await ArticlesPath().createArticle(formData);
 
       console.log("Article created successfully", response);
-        alert("Article created successfully");
+        setPopupMessage("Article created successfully");
+        setShowPopup(true);
         handleCancel();
       }
 
       catch (error) {
       console.error("New Article failed:", error);
-      alert("Error creating article");
+      setPopupMessage("Error creating article");
+      setShowPopup(true);
     }
   };
   
+  const closePopup = () => {
+    setShowPopup(false);
+
+    if (popupMessage === "User successfully created!") {
+        navigate("/LogIn");
+    }
+};
+
   const handleCancel = () => {
     setForm({
       title: "",
@@ -95,6 +108,9 @@ const ArticleForm = () => {
       <section className={styles.content}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <Title text="New Article" />
+          {showPopup && (
+            <Popup title="Well done!" onClose={closePopup}>{popupMessage}</Popup>
+            )}
           <div>
             <label htmlFor="name" className={styles.label}>
               Article
@@ -178,8 +194,7 @@ const ArticleForm = () => {
               <input
                 type="file"
                 name="picture"
-                id="picture"
-                value={form.picture}  
+                id="picture" 
                 hidden
                 autoComplete="off"
                 onChange={handleFileChange}
