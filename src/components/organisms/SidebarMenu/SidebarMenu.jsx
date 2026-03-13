@@ -1,13 +1,10 @@
 import SidebarButton from "../../molecules/SidebarButton/SidebarButton";
-import Avatar from "../../atoms/AvatarUser/AvatarUser";
+import Avatar from "../../atoms/avatarUser/AvatarUser";
 import styles from "./sidebar-menu.module.css";
-import Title from "../../atoms/title/Title"
 import { FcSynchronize } from "react-icons/fc";
 import { FcNews } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
-//import { FcLike } from "react-icons/fc";
-//import { FcSettings } from "react-icons/fc";
-import { FcShop } from "react-icons/fc";
+import { FcSettings } from "react-icons/fc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgClose } from "react-icons/cg";
 import { useState } from "react";
@@ -19,7 +16,6 @@ const SidebarMenu = () => {
 
     return(
         <>
-        <Title text="Welcome"/>
         
         <aside className={styles.sidebar}>
             
@@ -28,15 +24,8 @@ const SidebarMenu = () => {
                     {isOpen ? <CgClose /> : <RxHamburgerMenu />}
                 </button>
                 <Avatar />
-                <p className={styles.welcome}>Tienes X puntos</p>
             </div>
             <div className={`${styles.containerMenu} ${isOpen ? styles.open : ''}`}>
-                <SidebarButton 
-                    label="Shop Swapp" 
-                    icon={<FcShop size="2em"/>}  
-                    to="/shop"
-                    className={`${styles.item} ${styles.cyan}`} 
-                />
                 
                 <SidebarButton
                     label="My available swaps"
@@ -58,9 +47,13 @@ const SidebarMenu = () => {
                     to="/Profile/history"
                     className={`${styles.item} ${styles.yellow}`} 
                 />
+
+                <SidebarButton 
+                    label="Settings" 
+                    icon={<FcSettings size="2em"/>}  
+                    className={`${styles.item} ${styles.cyan}`} 
+                />
                 
-                {/* <MenuItem className={`${styles.item} ${styles.cyan}`} icon={<FcLike size="2em" />} label="Favorites"/>
-                <MenuItem className={`${styles.item} ${styles.yellow}`} icon={<FcSettings size="2em" />} label="Settings"/> */}
             </div>
         </aside>
         </>

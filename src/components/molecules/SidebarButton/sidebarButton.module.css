@@ -1,10 +1,10 @@
-.btnMenu{ /*Estilos para dentro del div contenedor para separar icono de label */
+.btnMenu{ 
   display:flex;
   align-items: center;
   justify-content: space-between;
   gap:5px;
 }
- 
+
 .btnMenu:hover,
 .active{
   filter: brightness(1.2);

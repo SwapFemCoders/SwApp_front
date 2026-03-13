@@ -1,4 +1,15 @@
 .mascot {
     width: 30rem;
-    height: auto;
+    height: 30rem;
+    background-image: url('../../../assets/images/walking-mascot.png');
+    background-size: 600% 100%;
+    background-repeat: no-repeat;
+    animation: walk 1.2s steps(6) infinite;
 }
+
+@keyframes walk {
+    0% { background-position: 0% 0%; }
+    50% { transform: translateY(-6px) rotate(-1deg); }
+    100% { background-position: 120% 0%; }
+}
+

@@ -1,8 +1,6 @@
 
-import { AuthProvider, useAuth } from '../../../context/AuthContext';
+import { AuthProvider} from '../../../context/AuthContext';
 import Title from '../../atoms/title/Title';
-import AuthModal from '../../molecules/authModal/AuthModal';
-// import { RedBackground } from "../../atoms/RedBackground/RedBackground";
 import { FullBackground } from "../../atoms/FullBackground/FullBackground";
 import ArticleList from "../../organisms/articleList/ArticleList";
 import styles from './shop.module.css';
@@ -14,14 +12,32 @@ import ArticlesPath from '../../../services/ArticlesPath';
 const ShopContent = () => {
 
     const [list, setList] = useState([]);
+    const [filteredArticles, setFilteredArticles] = useState([]);
     const [filters, setFilters] = useState({ searchTerm: '', category: 'ALL' });
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
-    //setList(MockArticles);
-        ArticlesPath().getAllArticles().then(data =>{setList(data)});
-    }, []);
+    ArticlesPath().getAllArticles().then(data =>{
+        setList(data);
+        setFilteredArticles(data);
+    });
+    },[]);
 
-   const handleFilterChange = (newFilters) => {
+    useEffect(() => {
+        let result = [...list];
+        if (filters.searchTerm) {
+            result = result.filter(a => 
+                a.title.toLowerCase().includes(filters.searchTerm.toLowerCase())
+            );
+        }
+        if (filters.category && filters.category !== 'ALL') {
+            result = result.filter(a => a.category === filters.category);
+        }
+
+        setFilteredArticles(result);
+    }, [filters, list]);
+
+const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
     };
     return (
@@ -29,19 +45,14 @@ const ShopContent = () => {
             <div className={styles.comicDivider}></div>
             <Title text= "SHOP"/>
 
-            {/* 3. Lateral Izquierdo
-            <aside className={`${styles.sidebar} ${styles.left}`}>
-                <div className={styles.placeholder}>FILTERS / AD</div>
-            </aside> */}
-
             <section className={styles.content}>
-                <ArticleList  filters ={filters}/>
+                {loading ? <p>Loading...</p> : <ArticleList  articles={filteredArticles}/>}
             </section>
 
             <aside className={`${styles.sidebar} ${styles.right}`}>
                 
                 <SidebarFilters 
-                    articles={[]} 
+                    articles={list} 
                     filters={filters} 
                     onFilter={handleFilterChange} 
                 />
@@ -50,9 +61,9 @@ const ShopContent = () => {
     );
 };
 
- export default function Shop() {
+export default function Shop() {
     return (
-         <>
+        <>
         <FullBackground content={
             <AuthProvider >
                 <ShopContent />

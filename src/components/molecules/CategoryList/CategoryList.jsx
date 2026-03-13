@@ -5,7 +5,6 @@ const CategoryList = ({ categories, onSelect, selectedCategory }) => {
     <nav className={styles.categoryNav}>
       <h3 className={styles.sidebarTitle}>CATEGORIES</h3>
       <ul className={styles.list}>
-        {/* Siempre añadimos la opción de ver todo */}
         <li key="ALL">
           <button 
             className={`${styles.categoryBtn} ${selectedCategory === 'ALL' ? styles.active : ''}`}

@@ -9,6 +9,7 @@ import { Layout } from "../layout/Layout";
 import { LogIn } from "../components/pages/LogIn/LogIn";
 import { SignUp } from "../components/pages/SignUp/SignUp";
 import { Profile } from "../components/pages/Profile/Profile";
+import  EditArticle from "../components/pages/EditArticle/EditArticle";
 
 export const router = createBrowserRouter ([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter ([
                     {
                         path:"history",
                         Component: SwapHistory
+                    },
+                    {
+                        path: "edit/:id",
+                        Component: EditArticle
                     }
                 ]
 

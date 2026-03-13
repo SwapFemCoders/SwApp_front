@@ -61,7 +61,7 @@ const UserProvider = ({children}) => {
     return (
         <UserContext.Provider value={{ isLogged, setIsLogged, login, logout, user,  isModalOpen, openAuthModal, closeAuthModal}}>
             {children}
-             <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
+            <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} />
         </UserContext.Provider>
     )
 }

@@ -1,26 +1,50 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ArticlesContext from "../../../context/ArticlesContext";
 import styles from "./articleForm.module.css";
 import Title from "../../atoms/title/Title";
 import ActionButton from "../../atoms/actionButton/ActionButton";
+import ArticlesPath from '../../../services/ArticlesPath';
+import Popup from '../../molecules/PopUp/PopUp.jsx';
+import { useNavigate } from "react-router";
 
-const ArticleForm = () => {
+const ArticleForm = ({articleId, isEdit = false}) => {
   const { createArticle } = useContext(ArticlesContext);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: "",
     description: "",
-    creationDate: "",
+    date: "",
     state: "",
     category: "",
-    user: "",
+    picture: ""
   });
+  const [picture, setPicture] = useState(null);
+  const[fileName,setFileName]= useState(null);
 
-  const [image, setImage] = useState(null);
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  useEffect(() => {
+    if (isEdit && articleId) {
+      const updatedArticle = async () => {
+        try {
+          const data = await ArticlesPath().getArticleById(articleId);
+          setForm({
+            title: data.title || "",
+            description: data.description || "",
+            date: data.date || "",
+            state: data.state || "",
+            category: data.category || "",
+            picture: ""
+          });
+          setFileName("Current image saved");
+        } catch (error) {
+          console.error("Error loading article", error);
+        }
+      };
+      updatedArticle();
+    }
+  }, [articleId, isEdit]);
 
   const handleChange = (e) => {
     setForm({
@@ -29,60 +53,93 @@ const ArticleForm = () => {
     });
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
+      const article = { ...form };
+      delete article.picture;
 
-      formData.append("title", form.title);
-      formData.append("description", form.description);
-      formData.append("creationDate", form.creationDate);
-      formData.append("state", form.state);
-      formData.append("category", form.category);
-      formData.append("user", form.user);
-      formData.append("image", image);
+      formData.append("article", new Blob([JSON.stringify(article)], { type: "application/json" })
+        );
+        if (form.picture && typeof form.picture !== 'string') {
+        formData.append("file", form.picture);
+      }
 
-      await createArticle(formData);
-    } catch (error) {
+      if (isEdit) {
+        await ArticlesPath().updateArticle(articleId, formData);
+        setPopupMessage("Updated!");
+        setShowPopup(true);
+        navigate(-1);
+      } else {
+        await ArticlesPath().createArticle(formData);
+        setPopupMessage("Article created successfully");
+        setShowPopup(true);
+      }
+      handleCancel();
+      }
+      catch (error) {
       console.error("New Article failed:", error);
-      alert("Error creating article");
+      if (isEdit){
+      setPopupMessage("Error updating article");
+      setShowPopup(true);
+      }
+      else {setPopupMessage("Error creating article");
+      setShowPopup(true);}
+  };}
+
+  const closePopup = () => {
+    setShowPopup(false);
+
+    if (popupMessage === "User successfully created!") {
+        navigate("/LogIn");
     }
-  };
+};
 
   const handleCancel = () => {
     setForm({
       title: "",
       description: "",
-      creationDate: "",
+      date: "",
       state: "",
       category: "",
-      user: "",
+      picture: ""
     });
-
-    setImage(null);
+    setFileName("");
+    setPicture(null);
+    
   };
-  const [fileName, setfileName] = useState(" ");
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
 
-    if (file) {
-      setfileName(file.name);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            setFileName(file.name);
+            setForm({
+        ...form,
+        picture: file
+        });
     }
-  };
+    };
+
   const validForm =
     form.title !== "" &&
     form.description !== "" &&
-    form.creationDate !== "" &&
+    form.date !== "" &&
     form.state !== "" &&
     form.category !== "" &&
-    form.user !== "" &&
-    image !== null;
+    (isEdit || !!form.picture);
 
   return (
     <>
       <section className={styles.content}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <Title text="New Article" />
+          {showPopup && (
+            <Popup title="Well done!" onClose={closePopup}>{popupMessage}</Popup>
+            )}
+          <Title text={isEdit ? "Edit Article" : "New Article"} />
           <div>
             <label htmlFor="name" className={styles.label}>
               Article
@@ -90,6 +147,7 @@ const ArticleForm = () => {
             <input
               className={styles.input}
               name="title"
+              value={form.title}  
               placeholder=" Name article"
               onChange={handleChange}
               required
@@ -103,6 +161,7 @@ const ArticleForm = () => {
             <textarea
               className={styles.input}
               name="description"
+              value={form.description}  
               placeholder="Description"
               onChange={handleChange}
             />
@@ -110,12 +169,13 @@ const ArticleForm = () => {
 
           <div>
             <label htmlFor="date" className={styles.label}>
-              Creation Date
+              date
             </label>
             <input
               className={styles.input}
               type="date"
-              name="creationDate"
+              name="date"
+              value={form.date}  
               onChange={handleChange}
             />
           </div>
@@ -127,10 +187,13 @@ const ArticleForm = () => {
             <select
               className={styles.input}
               name="state"
+              value={form.state}
               onChange={handleChange}
             >
-              <option>Used</option>
-              <option>New</option>
+              <option value="">Select state</option>
+              <option value="EXCELLENT">Excellent</option>
+              <option value="GOOD">Good</option>
+              <option value="REGULAR">Regular</option>
             </select>
           </div>
 
@@ -141,23 +204,15 @@ const ArticleForm = () => {
             <select
               className={styles.input}
               name="category"
+              value={form.category}
               onChange={handleChange}
             >
-              <option>Clothes</option>
-              <option>Electronics</option>
+              <option value="">Select Category</option>
+              <option value="SHOES">Shoes</option>
+              <option value="T_SHIRTS">T-shirts</option>
+              <option value="JACKETS">Jacket</option>
+              <option value="PANTS">Pants</option>
             </select>
-          </div>
-
-          <div>
-            <label htmlFor="user" className={styles.label}>
-              User
-            </label>
-            <input
-              className={styles.input}
-              name="user"
-              placeholder="User"
-              onChange={handleChange}
-            />
           </div>
 
           <div className={styles.picture}>
@@ -168,7 +223,7 @@ const ArticleForm = () => {
               <input
                 type="file"
                 name="picture"
-                id="picture"
+                id="picture" 
                 hidden
                 autoComplete="off"
                 onChange={handleFileChange}
@@ -183,13 +238,13 @@ const ArticleForm = () => {
           </div>
           <section className={styles.buttonSection}>
             <ActionButton
-              className={styles.button}
+              className="login"
               type="submit"
-              disabled={!validForm}
-              text={"CREATE"}
+              disabled={isEdit ? !form.title : !validForm}
+              text={isEdit ? "UPDATE" : "CREATE"}
             />
             <ActionButton
-              className={styles.button}
+              className="login"
               type="button"
               text={"CANCEL"}
               onClick={handleCancel}

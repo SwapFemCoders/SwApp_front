@@ -23,11 +23,10 @@ api.interceptors.response.use(
         if (error.response && error.response.status === 401|| error.response.status === 403) {
             // localStorage.removeItem("token");
             // localStorage.removeItem("userData");
-             localStorage.clear();
-              alert("Tu sesión ha expirado. Por favor, vuelve a entrar.");
-             window.location.href = "/";
+            localStorage.clear();
+            alert("Tu sesión ha expirado. Por favor, vuelve a entrar.");
+            window.location.href = "/";
             // window.location.href = "/login"; 
-           
         }
         return Promise.reject(error);
     }
