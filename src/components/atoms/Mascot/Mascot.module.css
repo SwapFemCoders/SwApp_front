@@ -1,4 +1,13 @@
 .mascot {
     width: 30rem;
     height: auto;
+    background-image: url('Walking-guy.png'); 
+    background-repeat: no-repeat;
+    animation: walk 0.8s steps(6) infinite;
 }
+
+@keyframes walk {
+    from { background-position: 0 0; }
+    to { background-position: -400px 0; }
+}
+
