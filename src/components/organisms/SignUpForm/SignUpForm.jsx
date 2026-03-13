@@ -192,7 +192,7 @@ export const SignUpForm = () => {
                 <div className={style.picture}>
                     <div>
                         <label htmlFor="picture" className={style.label}>Picture</label>
-                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} autoComplete='off'/>
+                        <input type="file" name='picture' id="picture" hidden onChange={handleFileChange} value={form.picture} autoComplete='off'/>
                     </div>
                     <div className={style.uploadButton}>
                         <label htmlFor="picture" className={style.pictureButton}>UPLOAD</label>
